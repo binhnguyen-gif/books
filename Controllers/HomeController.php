@@ -1,5 +1,7 @@
 <?php
 
+namespace Controller;
+
 class HomeController extends Controller
 {
     private $bookModel;
@@ -19,16 +21,23 @@ class HomeController extends Controller
 
     public function index()
     {
-        print_pre($this->categoryModel->getAllProductByCategory());die();
-//        try {
+        var_dump(md5(123456));
+//        print_pre($this->categoryModel->getAllProductByCategory());die();
+        try {
             $data['publish'] = $this->publishModel->getAll();
             $data['books'] = $this->bookModel->getAll();
             $data['categories'] = $this->categoryModel->getAll();
             // var_dump($books);
             $this->view->render('Home', $data);
-//        } catch (\Exception $e) {
-//            $this->view->render('errors/503', []);
-//        }
+        } catch (\Exception $e) {
+            $this->view->render('errors/503', []);
+        }
+    }
+
+    public function book()
+    {
+        $data['booksByCategory'] = $this->categoryModel->getAllProductByCategory();
+        $this->view->render('category_books', $data);
     }
 
 }

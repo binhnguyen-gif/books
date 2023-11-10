@@ -1,5 +1,6 @@
 <?php
 
+namespace Controller;
 
 class BookController extends Controller
 {
@@ -25,5 +26,8 @@ class BookController extends Controller
         $this->view->render('Home', $books);
     }
 
-    // Các phương thức xử lý logic khác cho trang chủ
+    public function show($id)
+    {
+        $book = $this->bookModel->getBookById($id);
+    }
 }

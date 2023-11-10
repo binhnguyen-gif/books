@@ -14,6 +14,10 @@ class Book extends Model
         return $this->insert($this->table, $data);
     }
 
+    public function getBookById($id) {
+        return $this->getRowArray($this->table, $id);
+    }
+
     public function updateBook($data, $id)
     {
         return $this->update($this->table, $data, $id);
