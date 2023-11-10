@@ -1,19 +1,15 @@
 <?php
-$title = "Some Web Site";
-
+session_start();
+$title = "Website bán sách";
 
 spl_autoload_register(function ($className) {
-    if (is_file('./Controller/' . $className . '.php')) {
-        require('./Controller/' . $className . '.php');
+    if (is_file('./Controllers/' . $className . '.php')) {
+        require_once ('./Controllers/' . $className . '.php');
     } else if (is_file('./Model/' . $className . '.php')) {
-        require('./Model/' . $className . '.php');
-    } else if (is_file('./inc/' . $className . '.php')) {
-        require_once('./inc/' . $className . '.php');
+        require_once ('./Model/' . $className . '.php');
+    } else if (is_file('./View/' . $className . '.php')) {
+        require_once ('./View/' . $className . '.php');
+    } else if (is_file('./helpers/' . $className . '.php')) {
+        require_once ('./helpers/' . $className . '.php');
     }
 });
-
-$page = null;
-if(isset($_GET['action'])) {
-    $page = $_GET['action'];
-}
-

@@ -1,23 +1,21 @@
 <?php
-session_start();
+require_once 'inc/config.php';
+require('./helpers/helper.php');
 
-include 'inc/config.php';
-include 'controller/controller.php';
+$view = new View();
 
-include 'view/Header.php';
-?>
+$route = isset($_GET['route']) ? $_GET['route'] : 'home';
+$controllerName = ucfirst($route) . 'Controller';
 
-<div class="mainContent">
+if (class_exists($controllerName)) {
+    $controller = new $controllerName($view);
+    $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-<?php
-include 'view/MenuPanel.php';
+    if (method_exists($controller, $action)) {
+        $controller->$action();
+    } else {
 
-$controller = new Controller();
-$controller->invoke($page);
-?>
-    
-</div>
+    }
+} else {
 
-<?php
-include 'view/Footer.php';
-?>
+}
