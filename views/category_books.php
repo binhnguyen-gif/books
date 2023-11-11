@@ -47,8 +47,8 @@ require_once 'Sliderbar.php';
                                                         <!-- <h2></h2> -->
                                                         <p style="height: 20px;">
                                                             <span class="new_price"><?php
-                                                                echo number_format($book->price); ?></span>
-                                                            <span class="old_price"></span>
+                                                                echo number_format($book->price); ?>đ</span>
+                                                            <span class="old_price"><?php echo number_format($book->old_price); ?>đ</span>
                                                         </p>
                                                         <p class="product-name"><?php
                                                             echo $book->name; ?></p>

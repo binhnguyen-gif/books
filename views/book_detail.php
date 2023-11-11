@@ -1,6 +1,7 @@
 <?php
 
-?>
+require_once 'Header.php';
+require_once 'Sliderbar.php'; ?>
 <section>
     <div class="container">
         <div class="row">
@@ -33,7 +34,7 @@
 
                     <div class="col-sm-5">
                         <div class="view-product zoom">
-                            <img src="images/product/<?php ?>" class="newarrival" alt="" />
+                            <img src="<?php echo route(); ?>assets/images/product/<?php echo $book['image']; ?>" class="newarrival" alt="" />
                         </div>
 
                     </div>
@@ -42,14 +43,14 @@
                         <div class="product-information">
                             <!--/product-information-->
 
-                            <h2><?php  ?></h2>
+                            <h2><?php echo $book['name']; ?></h2>
                             <?php
                             if (1 >0) {
                                 ?>
                                 <span>
-								<span class="product-price" style="color: #e21515;"><?php  ?></span>
+								<span class="product-price" style="color: #e21515;"><?php echo number_format($book['price']); ?>đ</span>
                                 <label>Số Lượng có sẵn:</label>
-                                <input type="text" value="<?php  ?>" />
+                                <input type="text" value="<?php echo $book['qty']; ?>" />
                                 </span>
                                 <form action="?quanly=giohang" method="POST">
                                     <fieldset>
@@ -64,9 +65,9 @@
                                     <p><b>Tình trạng:</b> Mới 100 %</p>
 
                                     <p><b>Nhà cung cấp :</b>
-
+                                        <?php echo $book['category_id']; ?>
                                     </p>
-                                    <a href=""><img src="images/shop/share.png" class="share img-responsive"  alt="" /></a>
+                                    <a href=""><img src="<?php echo route(); ?>assets/images/shop/share.png" class="share img-responsive"  alt="" /></a>
                                 </form>
                                 <?php
                             } else {
@@ -83,7 +84,7 @@
                             <div class="col-sm-4" >
                                 <table>
                                     <tr>
-                                        <td><img src="images/shop/doitra.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                        <td><img src="<?php echo route(); ?>assets/images/shop/doitra.png" style=" width: 43px;height: 36px; " alt=""></td>
                                         <td style="font-size:12px">7 ngày miễn phí trả hàng</td>
                                     </tr>
                                 </table>
@@ -91,7 +92,7 @@
                             <div class="col-sm-4" >
                                 <table>
                                     <tr>
-                                        <td><img  src="images/shop/chinhhang.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                        <td><img  src="<?php echo route(); ?>assets/images/shop/chinhhang.png" style=" width: 43px;height: 36px; " alt=""></td>
                                         <td style="font-size:12px">Hàng chính hãng 100%</td>
                                     </tr>
                                 </table>
@@ -100,7 +101,7 @@
 
                                 <table>
                                     <tr>
-                                        <td><img  src="images/shop/ship.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                        <td><img  src="<?php echo route(); ?>assets/images/shop/ship.png" style=" width: 43px;height: 36px; " alt=""></td>
                                         <td style="font-size:12px">Miễn phí vận chuyển trên mọi miền</td>
                                     </tr>
                                 </table>
@@ -135,18 +136,19 @@
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">Sản phẩm liên quan</h2>
 
-
+<?php //var_dump($relatedBooks);die(); ?>
+                       <?php foreach ($relatedBooks as $relatedBook) { ?>
                         <div class="col-sm-4 ">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <a href="?quanly=chitietsp&id=<?php ?>">
+                                    <a href="<?php echo route() . 'detail?id=' . $relatedBook['id']; ?>">
                                         <div class="productinfo text-center">
-                                            <img src="images/product/<?php ?>"  alt="" />
+                                            <img src="<?php echo route(); ?>assets/images/product/<?php echo $relatedBook['image']; ?>"  alt="" />
                                             <p style="height: 20px;">
-                                                <span class="new_price"><?php  ?></span>
-                                                <span class="old_price"><?php ?></span>
+                                                <span class="new_price"><?php echo $relatedBook['price']; ?></span>
+                                                <span class="old_price"><?php echo $relatedBook['old_price']; ?></span>
                                             </p>
-                                            <p class="product-name" ><?php  ?></p>
+                                            <p class="product-name" ><?php echo $relatedBook['name'];  ?></p>
                                             <form action="?quanly=giohang" method="POST">
                                                 <fieldset>
                                                     <input type="hidden" name="tensanpham" value="<?php ?>"/>
@@ -167,7 +169,7 @@
                             </div>
                         </div>
 
-
+                    <?php } ?>
                 </div><!--/recommended_items-->
             </div>
 
@@ -177,4 +179,4 @@
     </div>
 </section>
 
-
+<?php require_once 'Footer.php'; ?>

@@ -13,7 +13,8 @@ class HomeController
 {
     public function index(): View
     {
-        $books = (new Book())->getAll();
+        $search = $_GET['search'] ?? '';
+        $books = (new Book())->getBooksByKey($search);
         $categories = (new Category())->getAll();
         $publish = (new Publish())->getAll();
 

@@ -9,6 +9,7 @@ use App\Controllers\ContactController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
 use App\Controllers\BookController;
+use App\Controllers\CartController;
 use App\Controllers\Admin\DashboardController;
 use App\Router;
 
@@ -32,7 +33,8 @@ $router
     ->get('/books', [HomeController::class, 'books'])
     ->get('/contact', [ContactController::class, 'index'])
     ->post('/contact', [ContactController::class, 'store'])
-    ->get('/book-detail', [BookController::class, 'detail'])
+    ->get('/detail', [BookController::class, 'detail'])
+    ->get('/cart', [CartController::class, 'index'])
     ->get('/admin', [DashboardController::class, 'index']);
 (new App(
     $router,

@@ -101,12 +101,12 @@ abstract class Model
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function getDateByQuery($q, $data): ?array
+    public function getDataByQuery($q, $data): ?array
     {
         $query = $this->db->prepare($q);
         $query->execute($data);
 
-        return $query->fetch(\PDO::FETCH_ASSOC);
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     abstract protected function getTableName(): string;

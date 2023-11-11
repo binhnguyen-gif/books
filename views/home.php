@@ -58,7 +58,8 @@ require_once 'Sliderbar.php';
                         </div><!--/sales products-->
 
                         <div><!--shipping-->
-                            <img style="margin: 10px auto;" src="<?php echo route(); ?>/assets/images/shop/nha-sach-tiki.jpg" alt=""/>
+                            <img style="margin: 10px auto;" src="<?php
+                            echo route(); ?>/assets/images/shop/nha-sach-tiki.jpg" alt=""/>
                         </div><!--/shipping-->
 
                     </div>
@@ -76,43 +77,49 @@ require_once 'Sliderbar.php';
                             </select>
                         </div>
                         <?php
-                        foreach ($books as $book) { ?>
-                            <div class="col-sm-4 ">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <a href="">
-                                            <div class="productinfo text-center">
-                                                <img src="<?php
-                                                echo route(); ?>/assets/images/product/<?php
-                                                echo $book['image']; ?>" alt=""/>
-                                                <p style="height: 20px;">
+                        if (!empty($books)) {
+                            foreach ($books as $book) { ?>
+                                <div class="col-sm-4 ">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <a href="<?php
+                                            echo route().'detail?id='.$book['id']; ?>">
+                                                <div class="productinfo text-center">
+                                                    <img src="<?php
+                                                    echo route(); ?>/assets/images/product/<?php
+                                                    echo $book['image']; ?>" alt=""/>
+                                                    <p style="height: 20px;">
                                                     <span class="new_price"><?php
                                                         echo number_format($book['price']); ?>đ</span>
-                                                    <span class="old_price"><?php
-                                                        echo number_format($book['price']); ?>đ</span>
-                                                </p>
-                                                <p class="product-name"><?php
-                                                    echo $book['name']; ?></p>
-                                                <form action="?quanly=giohang" method="POST">
-                                                    <fieldset>
-                                                        <input type="hidden" name="tensanpham" value=""/>
-                                                        <input type="hidden" name="sanpham_id" value=""/>
-                                                        <input type="hidden" name="giasanpham" value=""/>
-                                                        <input type="hidden" name="hinhanh" value=""/>
-                                                        <input type="hidden" name="soluong" value="1"/>
-                                                        <input type="submit" name="themgiohang" value="Thêm giỏ hàng"
-                                                               class="btn btn-default add-to-cart"/>
+                                                        <span class="old_price"><?php echo number_format($book['old_price']); ?>đ</span>
+                                                    </p>
+                                                    <p class="product-name"><?php
+                                                        echo $book['name']; ?></p>
+                                                    <form action="?quanly=giohang" method="POST">
+                                                        <fieldset>
+                                                            <input type="hidden" name="tensanpham" value=""/>
+                                                            <input type="hidden" name="sanpham_id" value=""/>
+                                                            <input type="hidden" name="giasanpham" value=""/>
+                                                            <input type="hidden" name="hinhanh" value=""/>
+                                                            <input type="hidden" name="soluong" value="1"/>
+                                                            <input type="submit" name="themgiohang"
+                                                                   value="Thêm giỏ hàng"
+                                                                   class="btn btn-default add-to-cart"/>
 
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-                                        </a>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </a>
 
+                                        </div>
+                                        <img src="<?php
+                                        echo route(); ?>/assets/images/home/new.png" class="new" alt=""/>
                                     </div>
-                                    <img src="<?php echo route(); ?>/assets/images/home/new.png" class="new" alt=""/>
                                 </div>
-                            </div>
-                            <?php
+                                <?php
+                            }
+                        } else {
+                            echo "<p style='color:red;text-align: center;'>Sản phẩm không có , mời bạn nhập lại tên sản phẩm</p>";
                         } ?>
 
                     </div><!--features_items-->

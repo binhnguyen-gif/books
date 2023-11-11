@@ -71,8 +71,8 @@
                             <ul class="nav navbar-nav">
                                 <?php if(isset($_SESSION['user'])){
                                     ?>   
-                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['user']['username']; ?> </a></li>
-                                <li><a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['user']['username']; ?> </a></li>
+                                <li><a href="<?php echo route(); ?>cart"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
 
                                 <li><a href="<?php echo route(); ?>logout"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>
                                 <?php 
@@ -116,9 +116,9 @@
                     <div class="col-sm-7">
 
 						<div class="col-sm-7 agileits_search search_box pull-right " style="margin-top: -10px;">
-							<form class="form-inline" action="index.php?quanly=timkiem" method="POST">
-								<input class="form-control mr-sm-2" name="key_product" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" name="search_btn" type="submit">Tìm kiếm</button>
+							<form class="form-inline" action="<?php echo route(); ?>" method="GET">
+								<input class="form-control mr-sm-2" name="search" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" required>
+								<button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
 							</form>
 						</div>
 						<!-- //search -->
