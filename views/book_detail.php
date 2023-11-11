@@ -15,7 +15,6 @@
                                 </div>
                             </div>
 
-
                     </div><!--/category-products-->
 
                 </div>

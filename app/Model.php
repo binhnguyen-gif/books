@@ -33,12 +33,44 @@ abstract class Model
 
     public function insert(array $data): bool
     {
-        $columns = implode(', ', array_keys($data));
-        $values = ':'.implode(', :', array_keys($data));
+        try {
+            $columns = implode(', ', array_keys($data));
+            $values = ':' . implode(', :', array_keys($data));
+//            var_dump("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");die();
+            $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
 
-        $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
+            return $query->execute($data);
+        } catch (\PDOException $e) {
+            echo 'Lỗi: '.$e->getMessage();
+            return false;
+        }
+    }
 
-        return $query->execute($data);
+    public function insertAndGet(array $data)
+    {
+        try {
+            $columns = implode(', ', array_keys($data));
+            $values = ':' . implode(', :', array_keys($data));
+
+            $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
+
+            if ($query->execute($data)) {
+                // Nếu chèn thành công, lấy thông tin vừa thêm vào
+                $lastInsertId = $this->db->lastInsertId();
+
+                // Thực hiện truy vấn để lấy thông tin mới thêm vào
+                $selectQuery = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id = :lastInsertId");
+                $selectQuery->bindParam(':lastInsertId', $lastInsertId);
+                $selectQuery->execute();
+
+                return $selectQuery->fetch(\PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        } catch (\PDOException $e) {
+            echo 'Lỗi: ' . $e->getMessage();
+            return false;
+        }
     }
 
     public function update(int $id, array $data): bool
@@ -67,6 +99,14 @@ abstract class Model
         $query = $this->db->query($q);
 
         return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getDateByQuery($q, $data): ?array
+    {
+        $query = $this->db->prepare($q);
+        $query->execute($data);
+
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
     abstract protected function getTableName(): string;

@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book</title>
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/./assets/css/font-awesome.min.css">
-    <link href="./assets/css/prettyPhoto.css" rel="stylesheet">
-    <link href="./assets/css/price-range.css" rel="stylesheet">
-    <link href="./assets/css/animate.css" rel="stylesheet">
-    <link href="./assets/css/main.css" rel="stylesheet">
-    <link href="./assets/css/responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="./assets/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="./assets/images/ico/apple-touch-icon-57-precomposed.png">
+    <link href="<?php echo route(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="<?php echo route(); ?>assets/css/prettyPhoto.css" rel="stylesheet">
+    <link href="<?php echo route(); ?>assets/css/price-range.css" rel="stylesheet">
+    <link href="<?php echo route(); ?>assets/css/animate.css" rel="stylesheet">
+    <link href="<?php echo route(); ?>assets/css/main.css" rel="stylesheet">
+    <link href="<?php echo route(); ?>assets/css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo route(); ?>assets/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
 <header id="header">
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.php"><img style="width:90px;height: 70px;border-radius: 50%;" src="./assets/images/shop/logo2.jpg" alt="" /></a>
+                            <a href="<?php echo route(); ?>"><img style="width:90px;height: 70px;border-radius: 50%;" src="<?php echo route(); ?>assets/images/shop/logo2.jpg" alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -71,10 +71,10 @@
                             <ul class="nav navbar-nav">
                                 <?php if(isset($_SESSION['user'])){
                                     ?>   
-                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['user']; ?> </a></li>
+                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['user']['username']; ?> </a></li>
                                 <li><a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
 
-                                <li><a href="<?php echo getCurrentUrl(); ?>?route=login&action=logout"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>                              
+                                <li><a href="<?php echo route(); ?>logout"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>
                                 <?php 
                                 }else{ 
                                 ?>
@@ -107,9 +107,9 @@
                         </div>
                         <div class="mainmenu pull-left ">
                             <ul class="nav navbar-nav collapse navbar-collapse ">
-                                <li class="active"><a href="<?php echo route(); ?>/">Trang Chủ</a></li>
-                                <li class=""><a href="<?php echo route(); ?>/books">Sản Phẩm</a></li>
-                                <li ><a href="<?php echo route(); ?>/contact">Liên Hệ</a></li>
+                                <li class="active"><a href="<?php echo route(); ?>">Trang Chủ</a></li>
+                                <li class=""><a href="<?php echo route(); ?>books">Sản Phẩm</a></li>
+                                <li ><a href="<?php echo route(); ?>contact">Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="<?php echo getCurrentUrl(); ?>?route=login&action=login" method="POST">
+					<form action="<?php echo route(); ?>login" method="POST">
 						<div class="form-group">
 							<label class="col-form-label">Tên đăng nhập</label>
 							<input type="text" class="form-control" placeholder="điền email " name="username" required="">
@@ -175,10 +175,10 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="Controllers/SignUpCotrollers.php" method="POST">
+					<form action="<?php echo route(); ?>register" method="POST">
 						<div class="form-group">
 							<label class="col-form-label">Tên khách hàng</label>
-							<input type="text" class="form-control" placeholder="  " name="name" required="">
+							<input type="text" class="form-control" placeholder="  " name="username" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Email</label>

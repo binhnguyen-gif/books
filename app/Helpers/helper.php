@@ -14,7 +14,7 @@ if (!function_exists('route')) {
         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'];
 
-        return "$protocol://$host";
+        return "$protocol://$host/";
     }
 }
 
@@ -24,6 +24,13 @@ if (!function_exists('print_pre')) {
         echo "<pre>";
         print_r($data);
         echo "</pre>";
+    }
+}
+
+if (!function_exists('redirect')) {
+    function redirect($url) {
+        header("Location: $url");
+        exit();
     }
 }
 
