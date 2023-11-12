@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\CustomSession;
 use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
@@ -16,7 +17,7 @@ class OrderController extends Controller
         $customer_id = $_SESSION['customer']['id'] ?? null;
 
         if (!$customer_id) {
-            with('msg', 'Bạn cần đăng nhập thể thực hiện đặt hàng');
+            CustomSession::put('msg', 'Bạn cần đăng nhập thể thực hiện đặt hàng');
             redirect(route());
         }
 
@@ -34,7 +35,7 @@ class OrderController extends Controller
                 ];
 
                 $this->placeOrder($order, $customer_id);
-                with('msg', 'Đặt hàng thành công');
+                CustomSession::put('success', 'Đặt hàng thành công');
             }
         } catch (\Exception $e) {
             echo 'Lỗi: '.$e->getMessage().' Line:'.$e->getLine();
@@ -43,7 +44,7 @@ class OrderController extends Controller
         redirect(route());
     }
 
-    private function placeOrder($order, $customer_id)
+    private function placeOrder($order, $customer_id): void
     {
         $cart = (new Cart())->getCartByCustomer($customer_id);
         $amount = (new Cart())->getAmount($customer_id);
@@ -87,15 +88,17 @@ class OrderController extends Controller
             if ($vnp_ResponseCode == 0) {
                 $orderNew = (new Order())->getById($vnp_TxnRef);
                 (new Order())->update($orderNew['id'], ['payment_status' => Order::PAID, 'status' => Order::PREPARE]);
-
+                CustomSession::put('success', 'Đặt hàng và thanh toán thành công');
                 redirect(route());
             } elseif ($vnp_ResponseCode == 24) {
                 (new Order())->delete($vnp_TxnRef);
                 (new Cart())->deleteCart($customer_id);
+                CustomSession::put('warning', 'Bạn đã hủy đặt hàng');
                 redirect(route());
             } else {
                 (new Order())->delete($vnp_TxnRef);
                 (new Cart())->deleteCart($customer_id);
+                CustomSession::put('error', 'Lỗi đặt hàng');
                 redirect(route());
             }
         }

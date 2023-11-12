@@ -1,16 +1,17 @@
 <?php
 
 use App\Helpers\SessionFlash;
+use App\Helpers\CustomSession;
 
 if (!function_exists('getCurrentUrl')) {
-    function getCurrentUrl()
+    function getCurrentUrl(): string
     {
         return "http".(isset($_SERVER['HTTPS']) ? "s" : "")."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     }
 }
 
 if (!function_exists('route')) {
-    function route()
+    function route(): string
     {
         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'];
@@ -20,7 +21,7 @@ if (!function_exists('route')) {
 }
 
 if (!function_exists('print_pre')) {
-    function print_pre($data)
+    function print_pre($data): void
     {
         echo "<pre>";
         print_r($data);
@@ -51,14 +52,14 @@ if (!function_exists('session')) {
 }
 
 if (!function_exists('unsession')) {
-    function unsession($key)
+    function unsession($key): void
     {
         unset($_SESSION[$key]);
     }
 }
 
 if (!function_exists('checkLogin')) {
-    function checkLogin()
+    function checkLogin(): bool
     {
         $user = $_SESSION['customer'] ?? null;
         if ($user) {
@@ -84,9 +85,49 @@ if (!function_exists('test')) {
 }
 
 if (!function_exists('checkMethod')) {
-    function checkMethod($method)
+    function checkMethod($method): bool
     {
         return $_SERVER['REQUEST_METHOD'] === $method;
+    }
+}
+
+if (!function_exists('put')) {
+    function put($key, $value): void
+    {
+        CustomSession::put($key, $value);
+    }
+}
+
+if (!function_exists('get')) {
+    function get($key): bool
+    {
+        return CustomSession::get($key);
+    }
+}
+
+if (!function_exists('has')) {
+    function has($key): bool
+    {
+        return CustomSession::has($key);
+    }
+}
+
+if (!function_exists('forget')) {
+    function forget($key): void
+    {
+        CustomSession::forget($key);
+    }
+}
+
+if (!function_exists('customToaster')) {
+    function customToaster($key): void
+    {
+        if (has($key)) {
+            $value = get($key);
+            echo "showToast({$key}, {$value})";
+            forget($key);
+        }
+
     }
 }
 

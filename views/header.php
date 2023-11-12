@@ -11,6 +11,7 @@
     <link href="<?php echo route(); ?>assets/css/animate.css" rel="stylesheet">
     <link href="<?php echo route(); ?>assets/css/main.css" rel="stylesheet">
     <link href="<?php echo route(); ?>assets/css/responsive.css" rel="stylesheet">
+    <link href="<?php echo route(); ?>assets/css/toastr.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo route(); ?>assets/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-114-precomposed.png">

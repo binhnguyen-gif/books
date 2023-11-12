@@ -137,7 +137,6 @@ require_once 'Sliderbar.php'; ?>
         </div>
     </div>
 </section>
-
 <?php require_once 'Footer.php'; ?>
 
 

@@ -77,6 +77,7 @@
         </div>
 
     </footer>
+
     <!--/Footer-->
     <script src="<?php echo route();?>assets/js/jquery.js "></script>
     <script src="<?php echo route();?>assets/js/bootstrap.min.js "></script>
@@ -84,9 +85,26 @@
     <script src="<?php echo route();?>assets/js/price-range.js "></script>
     <script src="<?php echo route();?>assets/js/jquery.prettyPhoto.js "></script>
     <script src="<?php echo route();?>assets/js/main.js "></script>
-    
+    <script src="<?php echo route();?>assets/js/toastr.min.js "></script>
+
 	<!-- scroll seller -->
 	<script src="<?php echo route();?>assets/js/scroll.js"></script>
 	<!-- //scroll seller -->
+    <script>
+        function showToast(messageType, message) {
+            console.log('vaod');
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+            };
+
+            toastr[messageType](message);
+        }
+    </script>
+    <script>
+<?php customToaster('success') ?>
+    </script>
     </body>
 </html>
