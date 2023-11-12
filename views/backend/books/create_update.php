@@ -18,7 +18,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                             ?>
                             <form role="form" action="<?php
                             echo $route; ?>" method="POST" enctype="multipart/form-data">
-<!--                                <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">-->
+                                <!--                                <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">-->
                                 <input type="hidden" name="book_id" value="<?php
                                 echo isset($book['id']) ? $book['id'] : ''; ?>">
                                 <div class="form-group">
@@ -30,7 +30,8 @@ include(__DIR__.'/../common/aside.php'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
                                     <input type="file" class="form-control image-preview" name="image"
-                                           id="exampleInputEmail1" required onchange="previewFile(this);">
+                                           id="exampleInputEmail1" <?php
+                                    isset($book) ? '' : 'required'; ?> onchange="previewFile(this);">
                                     <?php
                                     $image = isset($book) ? (route().'assets/images/product/'.$book['image']) : ''; ?>
                                     <img src="<?php
@@ -67,7 +68,8 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
                                     <textarea type="text" value="<?php
                                     echo isset($book['detail']) ? $book['detail'] : ''; ?>"
-                                              class="form-control ckeditor" name="detail" id="exampleInputEmail1" required
+                                              class="form-control ckeditor" name="detail" id="exampleInputEmail1"
+                                              required
                                               placeholder="chi tiết sản phẩm"><?php
                                         echo isset($book['detail']) ? $book['detail'] : ''; ?></textarea>
                                 </div>
@@ -84,7 +86,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                             echo $publish['id'] ?>" <?php
                                             echo ($publish['id'] == $publish_id) ? 'selected' : ''; ?> ><?php
                                                 echo $publish['name'] ?></option>
-                                        <?php
+                                            <?php
                                         } ?>
                                     </select>
                                 </div>
@@ -97,7 +99,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                             echo $category['id'] ?>" <?php
                                             echo ($category['id'] == $category_id) ? 'selected' : ''; ?> ><?php
                                                 echo $category['name'] ?></option>
-                                        <?php
+                                            <?php
                                         } ?>
                                     </select>
                                 </div>
@@ -117,7 +119,8 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <button type="submit" name="addBook" class="btn btn-info">Thêm sản phẩm</button>
                                     <?php
                                 } ?>
-                                <a href="javascript:void(0);" class="btn btn-info">Quay lại</a>
+                                <a href="<?php
+                                echo customRoute('admin/list-book') ?>" class="btn btn-info">Quay lại</a>
                             </form>
                         </div>
                     </div>

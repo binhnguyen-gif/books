@@ -45,6 +45,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="<?php
     echo route(); ?>/assets/js/morris.js"></script>
     <link href="<?php echo route(); ?>assets/css/toastr.min.css" rel="stylesheet">
+    <script>
+        function customConfirm(route, message)
+        {
+            if(confirm(message))
+            {
+                window.location.href= route;
+            }
+        }
+    </script>
 </head>
 <body>
 

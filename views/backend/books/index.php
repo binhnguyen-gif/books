@@ -52,10 +52,12 @@
 <!--                                        <span style="font-size: 17px;">--><?php //echo $book['posted_date']; ?><!--</span>-->
 <!--                                    </td>-->
                                     <td style="width:2%">
+                                        <?php $routeDelete = customRoute('admin/book/delete?book_id=') . $book['id'] ?>
+                                        <?php $routeEdit = customRoute('admin/book/show?book_id=') . $book['id'] ?>
                                         <a href="<?php echo route() . 'admin/book/show?book_id=' . $book['id']; ?>" class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 20px;" class="fa fa-pencil-square-o text-success text-active"></i>
                                         </a>
-                                        <a href="<?php echo route() . 'admin/book/delete?book_id=' . $book['id']; ?>"
+                                        <a href="javascript:customConfirm('<?php echo $routeDelete; ?>', 'Bạn có chắc muốn xóa quyển sách này không?')"
                                            class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 20px;" class="fa fa-trash-o  text-danger text"></i>
                                         </a>

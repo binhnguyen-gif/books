@@ -12,7 +12,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                     </div>
                     <div class="row w3-res-tb">
                         <div class="col-sm-5 m-b-xs">
-                            <a href="themthuonghieu.php" class="btn btn-primary ">Thêm Thương Hiệu</a>
+                            <a href="<?php echo customRoute('admin/publish/create'); ?>" class="btn btn-primary ">Thêm Thương Hiệu</a>
                         </div>
                         <div class="col-sm-4">
                         </div>
@@ -38,17 +38,15 @@ include(__DIR__.'/../common/aside.php'); ?>
 
                                         <td><span style="font-size: 17px;"><?php
                                                 echo $value['name']; ?></span></td>
-
-
+                                        <?php $routeDelete = customRoute('admin/publish/delete?publish_id=') . $value['id'] ?>
+                                        <?php $routeEdit = customRoute('admin/publish/show?publish_id=') . $value['id'] ?>
                                         <td style="width:4%">
-                                            <a href="javascript:suathuonghieu('<?php
-                                            ?>')" class="active styling-edit" ui-toggle-class="">
+                                            <a href="javascript:customConfirm('<?php echo $routeEdit; ?>', 'Bạn muốn thay đổi nhà xuất bản này chứ?')" class="active styling-edit" ui-toggle-class="">
                                                 <i style="font-size: 26px;"
                                                    class="fa fa-pencil-square-o text-success text-active"></i>
                                             </a></td>
                                         <td>
-                                            <a href="javascript:xoa_id('<?php
-                                            ?>')"
+                                            <a href="javascript:customConfirm('<?php echo $routeDelete; ?>', 'Bạn có chắc muốn xóa nhà xuất bản này không này không?')"
                                                class="active styling-edit" ui-toggle-class="">
                                                 <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
                                             </a>

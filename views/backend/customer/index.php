@@ -54,7 +54,8 @@
 <!--                                                <i style="font-size: 26px;" class="fa fa-list-alt text-success text-active"></i>-->
 <!--                                            </a></td>-->
                                         <td>
-                                            <a href="javascript:xoa_id('<?php  ?>')"
+                                            <?php $routeDelete = customRoute('admin/customer/delete?customer_id=') . $customer['id'] ?>
+                                            <a href="javascript:customConfirm('<?php echo $routeDelete; ?>', 'Bạn có chắc muốn xóa khách hàng này không?')"
                                                class="active styling-edit" ui-toggle-class="">
                                                 <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
                                             </a>
