@@ -52,23 +52,22 @@ require_once 'Sliderbar.php'; ?>
                                 <label>Số Lượng có sẵn:</label>
                                 <input type="text" value="<?php echo $book['qty']; ?>" />
                                 </span>
-                                <form action="?quanly=giohang" method="POST">
-                                    <fieldset>
-                                        <input type="hidden" name="tensanpham" value="<?php ?>"/>
-                                        <input type="hidden" name="sanpham_id" value="<?php ?>"/>
-                                        <input type="hidden" name="giasanpham" value="<?php ?>"/>
-                                        <input type="hidden" name="hinhanh" value="<?php ?>"/>
-                                        <input type="hidden" name="soluong" value="1"/>
-                                        <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" />
-                                        <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
-                                    </fieldset>
+                                    <form action="<?php
+                                    echo route(); ?>cart" method="POST">
+                                        <fieldset>
+                                            <input type="hidden" name="book_id" value="<?php
+                                            echo $book['id']; ?>">
+                                            <input type="submit" name="addCart"
+                                                   value="Thêm giỏ hàng"
+                                                   class="btn btn-default add-to-cart"/>
+                                        </fieldset>
+                                    </form>
                                     <p><b>Tình trạng:</b> Mới 100 %</p>
 
                                     <p><b>Nhà cung cấp :</b>
                                         <?php echo $book['category_id']; ?>
                                     </p>
                                     <a href=""><img src="<?php echo route(); ?>assets/images/shop/share.png" class="share img-responsive"  alt="" /></a>
-                                </form>
                                 <?php
                             } else {
                                 ?>
@@ -123,10 +122,10 @@ require_once 'Sliderbar.php'; ?>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="details" >
-                            <p><?php  ?></p>
+                            <p><?php echo $book['description']; ?></p>
                         </div>
                         <div class="tab-pane fade" id="companyprofile" >
-                            <p><?php  ?></p>
+                            <p><?php echo $book['detail']; ?></p>
                         </div>
 
                     </div>

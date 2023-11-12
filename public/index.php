@@ -10,11 +10,12 @@ use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
 use App\Controllers\BookController;
 use App\Controllers\CartController;
+use App\Controllers\OrderController;
 use App\Controllers\Admin\DashboardController;
 use App\Router;
 
 require_once __DIR__.'/../vendor/autoload.php';
-
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 session_start();
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -35,6 +36,10 @@ $router
     ->post('/contact', [ContactController::class, 'store'])
     ->get('/detail', [BookController::class, 'detail'])
     ->get('/cart', [CartController::class, 'index'])
+    ->post('/cart', [CartController::class, 'addCart'])
+    ->post('/delete-book', [CartController::class, 'delete'])
+    ->post('/order', [OrderController::class, 'store'])
+    ->get('/checkout/vnPayCheck', [OrderController::class, 'vnPayCheck'])
     ->get('/admin', [DashboardController::class, 'index']);
 (new App(
     $router,

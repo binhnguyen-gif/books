@@ -40,7 +40,8 @@ require_once 'Sliderbar.php';
                                 foreach (json_decode($category['books']) as $book) { ?>
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
-                                            <a href="?quanly=chitietsp&id=">
+                                            <a href="<?php
+                                            echo route().'detail?id='.$book->id; ?>">
                                                 <div class="single-products">
                                                     <div class="productinfo text-center">
                                                         <img src="<?php echo route(); ?>/assets/images/product/<?php echo $book->image ?>" alt=""/>
@@ -52,17 +53,12 @@ require_once 'Sliderbar.php';
                                                         </p>
                                                         <p class="product-name"><?php
                                                             echo $book->name; ?></p>
-                                                        <form action="?quanly=giohang" method="POST">
+                                                        <form action="<?php echo route(); ?>cart" method="POST">
                                                             <fieldset>
-                                                                <input type="hidden" name="tensanpham" value=""/>
-                                                                <input type="hidden" name="sanpham_id" value=""/>
-                                                                <input type="hidden" name="giasanpham" value=""/>
-                                                                <input type="hidden" name="hinhanh" value=""/>
-                                                                <input type="hidden" name="soluong" value="1"/>
-                                                                <input type="submit" name="themgiohang"
+                                                                <input type="hidden" name="book_id" value="<?php echo $book->id; ?>">
+                                                                <input type="submit" name="addCart"
                                                                        value="Thêm giỏ hàng"
                                                                        class="btn btn-default add-to-cart"/>
-                                                                <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
                                                             </fieldset>
                                                         </form>
                                                     </div>

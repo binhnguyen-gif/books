@@ -51,7 +51,6 @@ abstract class Model
         try {
             $columns = implode(', ', array_keys($data));
             $values = ':' . implode(', :', array_keys($data));
-
             $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
 
             if ($query->execute($data)) {
@@ -94,11 +93,28 @@ abstract class Model
         return $query->execute(['id' => $id]);
     }
 
-    public function getData($q): array
+    public function deleteMulti(string $q, $data): bool
+    {
+        $query = $this->db->prepare($q);
+
+        return $query->execute($data);
+    }
+
+    public function getAllData($q): array
     {
         $query = $this->db->query($q);
+        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $result ?: [];
+    }
+
+    public function getData($q, $data): array
+    {
+        $query = $this->db->prepare($q);
+        $query->execute($data);
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $result ?: [];
     }
 
     public function getDataByQuery($q, $data): ?array

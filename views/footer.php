@@ -43,12 +43,12 @@
                             <h2>Thanh toán miễn phí</h2>
                             <table>
                                 <tr>
-                                    <td><img src="./assets/images/shop/thanhtoan/bidv.png" style=" width: 90px; height: 40px;margin: 5px; " alt=""></td>
-                                    <td><img src="./assets/images/shop/thanhtoan/icon-vnpay.png" style=" width: 90px; height: 40px; margin: 5px;" alt=""></td>
+                                    <td><img src="<?php echo route();?>assets/images/shop/thanhtoan/bidv.png" style=" width: 90px; height: 40px;margin: 5px; " alt=""></td>
+                                    <td><img src="<?php echo route();?>assets/images/shop/thanhtoan/icon-vnpay.png" style=" width: 90px; height: 40px; margin: 5px;" alt=""></td>
                                 </tr>
                                 <tr>
-                                    <td><img src="./assets/images/shop/thanhtoan/visa.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
-                                    <td><img src="./assets/images/shop/thanhtoan/zalopay.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
+                                    <td><img src="<?php echo route();?>assets/images/shop/thanhtoan/visa.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
+                                    <td><img src="<?php echo route();?>assets/images/shop/thanhtoan/zalopay.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
                                 </tr>
                             </table>
                         </div>
@@ -78,15 +78,15 @@
 
     </footer>
     <!--/Footer-->
-    <script src="./assets/js/jquery.js "></script>
-    <script src="./assets/js/bootstrap.min.js "></script>
-    <script src="./assets/js/jquery.scrollUp.min.js "></script>
-    <script src="./assets/js/price-range.js "></script>
-    <script src="./assets/js/jquery.prettyPhoto.js "></script>
-    <script src="./assets/js/main.js "></script>
+    <script src="<?php echo route();?>assets/js/jquery.js "></script>
+    <script src="<?php echo route();?>assets/js/bootstrap.min.js "></script>
+    <script src="<?php echo route();?>assets/js/jquery.scrollUp.min.js "></script>
+    <script src="<?php echo route();?>assets/js/price-range.js "></script>
+    <script src="<?php echo route();?>assets/js/jquery.prettyPhoto.js "></script>
+    <script src="<?php echo route();?>assets/js/main.js "></script>
     
 	<!-- scroll seller -->
-	<script src="js/scroll.js"></script>
+	<script src="<?php echo route();?>assets/js/scroll.js"></script>
 	<!-- //scroll seller -->
     </body>
 </html>

@@ -16,7 +16,7 @@ class Category extends Model
                   FROM {$this->table} c
                   LEFT JOIN books b ON c.id = b.category_id
                   GROUP BY c.id, c.name";
-        return $this->getData($query);
+        return $this->getAllData($query);
     }
 
     public function getCountBookById()

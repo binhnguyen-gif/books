@@ -69,9 +69,9 @@
                     <div class="col-sm-8" style="margin-top:16px; ">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <?php if(isset($_SESSION['user'])){
+                                <?php if(isset($_SESSION['customer'])){
                                     ?>   
-                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['user']['username']; ?> </a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $_SESSION['customer']['username']; ?> </a></li>
                                 <li><a href="<?php echo route(); ?>cart"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
 
                                 <li><a href="<?php echo route(); ?>logout"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>

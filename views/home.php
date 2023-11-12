@@ -3,6 +3,15 @@
 require_once 'Header.php';
 require_once 'Sliderbar.php';
 ?>
+<?php
+$msg = !empty(session('msg')) ? session('msg') : null;
+if (!empty($msg)) {
+    ?>
+<!--    <script>alert('Đặt hàng thành công')</script>-->
+<?php
+}
+//unsession('msg');
+?>
     <section>
         <div class="container">
             <div class="row">
@@ -42,17 +51,19 @@ require_once 'Sliderbar.php';
                             <h2 style="margin-top:20px;">SẢN PHẨM BÁN CHẠY</h2>
                             <div class="box-scroll">
                                 <div class="scroll">
+                                    <?php foreach ($sellingBooks as $book) {?>
                                     <div class="row">
-                                        <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                            <img src="" alt="" class="img-fluid" style=" max-width: 100%;height: auto;">
+                                        <div class="col-lg-3 col-sm-2 col-3 left-mar" style="margin-bottom: 20px;">
+                                            <img src="<?php echo route(); ?>assets/images/product/<?php echo $book['image']; ?>" alt="" class="img-fluid" style=" max-width: 100%;height: auto;">
                                         </div>
                                         <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                            <a href=""></a>
+                                            <a href="<?php echo route() . 'detail?id' . $book['id']; ?>"><?php echo $book['name']; ?></a>
                                             <br>
-                                            <span class="new_price"></span>
-                                            <span class="old_price"></span>
+                                            <span class="new_price"><?php echo number_format($book['price']); ?>đ</span>
+                                            <span class="old_price"><?php echo number_format($book['old_price']); ?>đ</span>
                                         </div>
                                     </div>
+                                <?php }?>
                                 </div>
                             </div>
                         </div><!--/sales products-->
@@ -91,21 +102,19 @@ require_once 'Sliderbar.php';
                                                     <p style="height: 20px;">
                                                     <span class="new_price"><?php
                                                         echo number_format($book['price']); ?>đ</span>
-                                                        <span class="old_price"><?php echo number_format($book['old_price']); ?>đ</span>
+                                                        <span class="old_price"><?php
+                                                            echo number_format($book['old_price']); ?>đ</span>
                                                     </p>
                                                     <p class="product-name"><?php
                                                         echo $book['name']; ?></p>
-                                                    <form action="?quanly=giohang" method="POST">
+                                                    <form action="<?php
+                                                    echo route(); ?>cart" method="POST">
                                                         <fieldset>
-                                                            <input type="hidden" name="tensanpham" value=""/>
-                                                            <input type="hidden" name="sanpham_id" value=""/>
-                                                            <input type="hidden" name="giasanpham" value=""/>
-                                                            <input type="hidden" name="hinhanh" value=""/>
-                                                            <input type="hidden" name="soluong" value="1"/>
-                                                            <input type="submit" name="themgiohang"
+                                                            <input type="hidden" name="book_id" value="<?php
+                                                            echo $book['id']; ?>">
+                                                            <input type="submit" name="addCart"
                                                                    value="Thêm giỏ hàng"
                                                                    class="btn btn-default add-to-cart"/>
-
                                                         </fieldset>
                                                     </form>
                                                 </div>

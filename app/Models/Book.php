@@ -33,6 +33,13 @@ class Book extends Model
         return $this->getDataByQuery($query, $data);
     }
 
+    public function getBooksByCondition($column, $condition)
+    {
+        $query = "SELECT * FROM {$this->table} ORDER BY {$column} {$condition}";
+
+        return $this->getDataByQuery($query, $data ?? []);
+    }
+
     protected function getTableName(): string
     {
         return $this->table;

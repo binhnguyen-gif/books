@@ -4,15 +4,15 @@ namespace App\Models;
 
 use App\Model;
 
-class User extends Model
+class Customer extends Model
 {
-    protected $table = 'users';
+    protected $table = 'customers';
 
     public function login($username, $password)
     {
         $query = "SELECT * FROM {$this->table} WHERE username = :username AND password = :password LIMIT 1";
 
-        return $this->getDataByQuery($query, ['username' => $username, 'password' => $password]);
+        return $this->getData($query, ['username' => $username, 'password' => $password]);
     }
 
     public function register($info)
