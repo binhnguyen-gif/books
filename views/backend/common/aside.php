@@ -5,20 +5,20 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="admin.php">
+                    <a class="active" href="<?php
+                    echo route(); ?>admin">
                         <i class="fa fa-dashboard"></i>
                         <span>Tổng quát</span>
                     </a>
                 </li>
-
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-shopping-cart"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
-
-                        <li><a href="quanlydonhang.php">Quản lý đơn hàng</a></li>
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-order">Quản lý đơn hàng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -27,48 +27,50 @@
                         <span>Khách hàng</span>
                     </a>
                     <ul class="sub">
-
-                        <li><a href="quanlykhachhang.php">Quản lý khách hàng</a></li>
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-customer">Quản lý khách hàng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
+                        <span>Danh mục sách</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="lietkedanhmucsp.php">Liệt kê danh mục sản phẩm</a></li>
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-category">Liệt kê danh mục sách</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-bank"></i>
-                        <span>Thương hiệu sản phẩm</span>
+                        <span>Nhà xuất bản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="lietkethuonghieu.php">Liệt kê thương hiệu sản phẩm</a></li>
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-publish">Liệt kê nhà xuất bản</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-archive"></i>
-                        <span>Sản phẩm</span>
+                        <span>Quản lý sách</span>
                     </a>
                     <ul class="sub">
-
-                        <li><a href="<?php echo route();?>admin/list-book">Quản lý sản phẩm</a></li>
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-book">Quản lý sách</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-newspaper-o"></i>
-                        <span>Tin tức</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="quanly_tintuc.php">Quản lý tin tức</a></li>
-                        <li><a href="quanly_danhmuc_tin.php">Quản lý danh mục tin tức</a></li>
-                    </ul>
-                </li>
+                <!--                <li class="sub-menu">-->
+                <!--                    <a href="javascript:;">-->
+                <!--                        <i class="fa fa-newspaper-o"></i>-->
+                <!--                        <span>Tin tức</span>-->
+                <!--                    </a>-->
+                <!--                    <ul class="sub">-->
+                <!--                        <li><a href="quanly_tintuc.php">Quản lý tin tức</a></li>-->
+                <!--                        <li><a href="quanly_danhmuc_tin.php">Quản lý danh mục tin tức</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
             </ul>
         </div>
         <!-- sidebar menu end-->

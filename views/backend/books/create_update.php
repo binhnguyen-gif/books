@@ -25,12 +25,12 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <label for="exampleInputEmail1">Tên sản phẩm:</label>
                                     <input type="text" value="<?php
                                     echo isset($book['name']) ? $book['name'] : ''; ?>" class="form-control" name="name"
-                                           id="exampleInputEmail1" placeholder="tên sản phẩm">
+                                           id="exampleInputEmail1" required placeholder="tên sản phẩm">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
                                     <input type="file" class="form-control image-preview" name="image"
-                                           id="exampleInputEmail1" onchange="previewFile(this);">
+                                           id="exampleInputEmail1" required onchange="previewFile(this);">
                                     <?php
                                     $image = isset($book) ? (route().'assets/images/product/'.$book['image']) : ''; ?>
                                     <img src="<?php
@@ -41,23 +41,23 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
                                     <input type="text" value="<?php
                                     echo isset($book['old_price']) ? $book['old_price'] : ''; ?>" class="form-control"
-                                           name="old_price" id="exampleInputEmail1" placeholder="giá sản phẩm">
+                                           name="old_price" id="exampleInputEmail1" required placeholder="giá sản phẩm">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá khuyến mãi:</label>
                                     <input type="text" value="<?php
                                     echo isset($book['price']) ? $book['price'] : ''; ?>" class="form-control"
-                                           name="price" id="exampleInputEmail1" placeholder="giá khuyến mãi">
+                                           name="price" id="exampleInputEmail1" required placeholder="giá khuyến mãi">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng sản phẩm:</label>
                                     <input type="text" value="<?php
                                     echo isset($book['qty']) ? $book['qty'] : ''; ?>" class="form-control" name="qty"
-                                           id="exampleInputEmail1" placeholder="số lượng">
+                                           id="exampleInputEmail1" required placeholder="số lượng">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sản phẩm:</label>
-                                    <textarea type="text" value="<?php
+                                    <textarea type="text" maxlength="100" required value="<?php
                                     echo isset($book['description']) ? $book['description'] : ''; ?>"
                                               class="form-control ckeditor" name="description" id="exampleInputEmail1"
                                               placeholder="mô tả sản phẩm"><?php
@@ -67,7 +67,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
                                     <textarea type="text" value="<?php
                                     echo isset($book['detail']) ? $book['detail'] : ''; ?>"
-                                              class="form-control ckeditor" name="detail" id="exampleInputEmail1"
+                                              class="form-control ckeditor" name="detail" id="exampleInputEmail1" required
                                               placeholder="chi tiết sản phẩm"><?php
                                         echo isset($book['detail']) ? $book['detail'] : ''; ?></textarea>
                                 </div>

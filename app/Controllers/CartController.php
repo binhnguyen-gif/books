@@ -2,19 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Helpers\CustomSession;
 use App\Models\Book;
 use App\Models\Cart;
 use App\View;
 
 class CartController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
         if (!checkLogin()) {
-            with('msg', 'Bạn cần đăng nhập thể thực hiện thêm sản phẩm vào giỏ hàng');
+            CustomSession::put('info', 'Bạn cần đăng nhập thể thực hiện thêm sản phẩm vào giỏ hàng');
             redirect(route());
         }
+    }
 
+    public function index()
+    {
         $customer_id = $_SESSION['customer']['id'];
         $books = (new Cart())->getCartByCustomer($customer_id);
 //        print_pre($books);die();
@@ -49,17 +54,12 @@ class CartController extends Controller
             exit();
         }
 
-        with('msg', 'Bạn cần đăng nhập thể thực hiện thêm sản phẩm vào giỏ hàng');
+        CustomSession::put('info', 'Bạn cần đăng nhập thể thực hiện thêm sản phẩm vào giỏ hàng');
         redirect(route());
     }
 
     public function delete()
     {
-        if (!checkLogin()) {
-            with('msg', 'Bạn cần đăng nhập thể thực hiện thêm sản phẩm vào giỏ hàng');
-            redirect(route());
-        }
-
         try {
             $book_id = $_POST['book_id'] ?? null;
             $customer_id = $_SESSION['customer']['id'] ?? null;
@@ -68,12 +68,11 @@ class CartController extends Controller
             if ($cart) {
                 (new Cart())->delete($cart['id']);
             }
-//        print_pre($books);die();
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             echo 'Lỗi: '.$e->getMessage().' Line:'.$e->getLine();
             exit();
         }
 
-        redirect(route());
+        back();
     }
 }

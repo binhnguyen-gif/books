@@ -1,6 +1,6 @@
 <?php include(__DIR__ . '/../common/header.php');?>
 <?php include(__DIR__ . '/../common/aside.php');?>
-
+    <section id="main-content">
     <section class="wrapper">
         <div class="table-agile-info">
             <div class="panel panel-default">
@@ -15,7 +15,7 @@
                         <div class="col-md-2">
                             <p>Đến ngày: <input type="date" class="form-control" name="date2" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>"> </p>
                         </div><br>
-                        <button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span></button><a href="quanlykhachhang.php" type="button" class="btn btn-success"><span class = "glyphicon glyphicon-refresh"><span></a>
+                        <button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span></button><a href="<?php echo route(); ?>admin/list-customer" type="button" class="btn btn-success"><span class = "glyphicon glyphicon-refresh"><span></a>
                     </form>
 
                 </div>
@@ -29,36 +29,32 @@
                             <th>Số điện thoại </th>
                             <th>Email </th>
                             <th>Địa chỉ</th>
-                            <th>Ngày mua</th>
-                            <th >Lịch sử giao dịch</th>
-
-                            <th style="width:30px;"></th>
+                            <th class="text-left">Ngày sinh</th>
+<!--                            <th class="text-center">Lịch sử giao dịch</th>-->
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        if (isset($_POST['search'])) {
-                            $date1 = date("Y-m-d", strtotime($_POST['date1']));
-                            $date2 = date("Y-m-d", strtotime($_POST['date2']));
-                            $sql_kq = mysqli_query($con, "SELECT * FROM tbl_khachhang,tbl_giaodich WHERE tbl_khachhang.khachhang_id=tbl_giaodich.khachhang_id AND timee BETWEEN '$date1 ' AND '$date2' GROUP BY tbl_giaodich.magiaodich ORDER BY tbl_khachhang.khachhang_id DESC");
-                            if (mysqli_num_rows($sql_kq)>0) {
-                                $i = 0;
-                                while ($row_khachhang = mysqli_fetch_array($sql_kq)) {
-                                    $i++; ?>
-                                    <tr>
-                                        <td><span style="font-size: 17px;"><?php echo $i; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row_khachhang['names']; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row_khachhang['phone']; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row_khachhang['email']; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row_khachhang['addresss']; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row_khachhang['timee']; ?></span></td>
+//                            $date1 = date("Y-m-d", strtotime($_POST['date1']));
+//                            $date2 = date("Y-m-d", strtotime($_POST['date2']));
+                            if (!empty($customers)) {
+                                foreach ($customers as $index => $customer) {?>
 
-                                        <td style="width: 12%;text-align: center">
-                                            <a href="javascript:xemgiaodich('<?php echo $row_khachhang['magiaodich'] ?>')">
-                                                <i style="font-size: 26px;" class="fa fa-list-alt text-success text-active"></i>
-                                            </a></td>
+                                    <tr>
+                                        <td><span style="font-size: 17px;"><?php echo $index; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $customer['username']; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $customer['phone']; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $customer['email']; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $customer['address']; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo date('Y-m-d', strtotime($customer['birthday'])); ?></span></td>
+
+<!--                                        <td style="width: 12%;text-align: center">-->
+<!--                                            <a href="javascript:xemgiaodich('--><?php // ?><!--')">-->
+<!--                                                <i style="font-size: 26px;" class="fa fa-list-alt text-success text-active"></i>-->
+<!--                                            </a></td>-->
                                         <td>
-                                            <a href="javascript:xoa_id('<?php echo $row_khachhang['khachhang_id']; ?>')"
+                                            <a href="javascript:xoa_id('<?php  ?>')"
                                                class="active styling-edit" ui-toggle-class="">
                                                 <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
                                             </a>
@@ -73,44 +69,10 @@
                                 </tr>
                                 <?php
                             }
-                        }else{
                             ?>
-                            <!-- không tìm kiếm theo ngày -->
-                            <?php
-                            $sql_kq = mysqli_query($con, "SELECT * FROM tbl_khachhang,tbl_giaodich WHERE tbl_khachhang.khachhang_id=tbl_giaodich.khachhang_id GROUP BY tbl_giaodich.magiaodich ORDER BY tbl_khachhang.khachhang_id DESC");
-
-                            $i = 0;
-                            while ($row_khachhang = mysqli_fetch_array($sql_kq)) {
-                                $i++;
-                                ?>
-                                <tr>
-                                    <td><span style="font-size: 17px;"><?php echo $i; ?></span></td>
-                                    <td ><span style="font-size: 17px;"><?php echo $row_khachhang['names']; ?></span></td>
-                                    <td ><span style="font-size: 17px;"><?php echo $row_khachhang['phone']; ?></span></td>
-                                    <td ><span style="font-size: 17px;"><?php echo $row_khachhang['email']; ?></span></td>
-                                    <td ><span style="font-size: 17px;"><?php echo $row_khachhang['addresss']; ?></span></td>
-                                    <td ><span style="font-size: 17px;"><?php echo $row_khachhang['timee']; ?></span></td>
-
-                                    <td style="width: 12%;text-align: center">
-                                        <a href="javascript:xemgiaodich('<?php echo $row_khachhang['magiaodich'] ?>')">
-                                            <i style="font-size: 26px;" class="fa fa-list-alt text-success text-active"></i>
-                                        </a></td>
-                                    <td>
-                                        <a href="javascript:xoa_id('<?php echo $row_khachhang['khachhang_id']; ?>')"
-                                           class="active styling-edit" ui-toggle-class="">
-                                            <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                            ?>
-                            <?php
-                        }
-                        ?>
                         </tbody>
                     </table>
                 </div>
-
+    </section>
     </section>
 <?php include(__DIR__ . '/../common/footer.php');?>

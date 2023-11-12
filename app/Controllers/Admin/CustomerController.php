@@ -4,28 +4,28 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Helpers\CustomSession;
-use App\Models\Book;
+use App\Models\Customer;
 use App\View;
 
 
-class BookController extends Controller
+class CustomerController extends Controller
 {
+
     public function __construct()
     {
-        if (!checkAdmin()) {
+        if(!checkAdmin()) {
             redirect(customRoute('admin/login'));
         }
     }
-
     public function list(): View
     {
-        $books = (new Book())->getListBook();
-        return View::make('backend/books/index', ['books' => $books]);
+        $customers = (new Customer())->getAll();
+        return View::make('backend/customer/index', ['customers' => $customers]);
     }
 
     public function create(): View
     {
-        return View::make('backend/books/create_update');
+        return View::make('backend/customer/create_update');
     }
 
     public function store()
@@ -34,27 +34,25 @@ class BookController extends Controller
             if (checkMethod('POST') && isset($_POST['addBook'])) {
                 $this->updateFile('image');
                 $newBook = $this->extracted();
-                $result = (new Book())->insert($newBook);
-                if ($result) {
-                    CustomSession::put('success', 'Thêm thành công');
-                } else {
-                    CustomSession::put('error', 'Có lỗi xảy ra vui lòng thử lại');
-                }
+                (new Book())->insert($newBook);
             }
+
         } catch (\Exception $e) {
-            CustomSession::put('error', 'Lỗi: '.$e->getMessage().'line-> '.$e->getLine());
+            CustomSession::put('error', 'Lỗi book');
             back();
         }
 
+        CustomSession::put('success', 'Thêm thành công');
         back();
     }
 
     public function show(): View
     {
+//        print_pre((new \App\Models\Publish())->getAll());die();
         try {
             $id = $_GET['book_id'];
             $book = (new Book())->getById($id);
-            return View::make('backend/books/create_update', ['book' => $book]);
+            return View::make('backend/customer/create_update', ['book' => $book]);
         } catch (\Exception $e) {
             return View::make('errors/404');
         }
@@ -62,40 +60,29 @@ class BookController extends Controller
 
     public function update()
     {
+
         try {
             if (checkMethod('POST') && isset($_POST['updateBook'])) {
-                if (check_upload('image')) {
+                if(check_upload('image')) {
                     $this->updateFile('image');
                 }
                 $id = $_POST['book_id'];
                 $book = $this->extracted();
-                $result = (new Book())->update($id, $book);
-                if ($result) {
-                    CustomSession::put('success', 'Update thành công');
-                }
+                (new Book())->update($id, $book);
             }
+
         } catch (\Exception $e) {
-            CustomSession::put('error', 'Lỗi update book');
+            CustomSession::put('error', 'Lỗi book');
+            back();
         }
 
+        CustomSession::put('success', 'Update thành công');
         back();
     }
 
     public function delete()
     {
-        try {
-            $book_id = $_GET['book_id'];
-            $book = (new Book())->getById($book_id);
-            delete_file($book['image']);
-            $result = (new Book())->delete($book_id);
-            if ($result) {
-                CustomSession::put('success', 'Xóa thành công');
-            }
-        } catch (\Exception $e) {
-            CustomSession::put('error', 'Lỗi xóa book');
-        }
 
-        back();
     }
 
 

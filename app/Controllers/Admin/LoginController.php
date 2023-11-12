@@ -25,6 +25,8 @@ class LoginController extends Controller
                 CustomSession::put('warning', 'Sai thông tin tài khoản hoặc mật khẩu');
             }
         }
+
+        back();
     }
 
     public function logout()

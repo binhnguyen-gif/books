@@ -36,7 +36,6 @@ abstract class Model
         try {
             $columns = implode(', ', array_keys($data));
             $values = ':' . implode(', :', array_keys($data));
-//            var_dump("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");die();
             $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
 
             return $query->execute($data);

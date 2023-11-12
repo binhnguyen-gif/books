@@ -6,11 +6,11 @@
         <div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Liệt Kê Sản Phẩm
+                    Danh sách sách
                 </div>
                 <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="<?php echo route(); ?>admin/book/create" class="btn btn-primary ">Thêm sản phẩm</a>
+                        <a href="<?php echo route(); ?>admin/book/create" class="btn btn-primary ">Thêm sách mới</a>
                     </div>
                     <div class="col-sm-4">
                     </div>
@@ -19,12 +19,12 @@
                     <table class="table table-striped b-t b-light" id="example">
                         <thead>
                         <tr>
-                            <th>Tên Sản Phẩm </th>
-                            <th>Hình Sản Phẩm </th>
-                            <th>Giá Sản Phẩm </th>
+                            <th>Tên sách </th>
+                            <th>Hình ảnh </th>
+                            <th>Giá sách </th>
                             <th>Giá Khuyến Mãi </th>
                             <th>Số lượng </th>
-                            <th>Danh Mục Sản Phẩm </th>
+                            <th>Danh Mục sách </th>
                             <th>Nhà xuất bản</th>
 <!--                            <th>Hiển Thị</th>-->
 <!--                            <th>Bán chạy</th>-->

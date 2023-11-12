@@ -2,6 +2,8 @@
 include(__DIR__.'/../common/header.php'); ?>
 <?php
 include(__DIR__.'/../common/aside.php'); ?>
+
+    <section id="main-content">
     <section class="wrapper">
         <div class="table-agile-info">
             <div class="panel panel-default">
@@ -10,7 +12,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                 </div>
                 <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="themdanhmuc.php" class="btn btn-primary ">Thêm Danh Mục</a>
+                        <a href="<?php echo route(); ?>admin/category/create" class="btn btn-primary ">Thêm Danh Mục</a>
                     </div>
                     <div class="col-sm-4">
                     </div>
@@ -27,27 +29,21 @@ include(__DIR__.'/../common/aside.php'); ?>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $sql_kq = mysqli_query($con, "SELECT * FROM tbl_category");
-                        if (mysqli_num_rows($sql_kq) > 0) {
-                            while ($row = mysqli_fetch_row($sql_kq)) {
-                                ?>
+
+                        <?php if (!empty($categories)){
+                            foreach ($categories as $category) {?>
                                 <tr>
                                     <td></td>
 
                                     <td><span style="font-size: 17px;"><?php
-                                            echo $row[1]; ?></span></td>
-
-
+                                            echo $category['name']; ?></span></td>
                                     <td style="width:4%">
-                                        <a href="javascript:suadanhmuc('<?php
-                                        echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                        <a href="javascript:suadanhmuc('')" class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 26px;"
                                                class="fa fa-pencil-square-o text-success text-active"></i>
                                         </a></td>
                                     <td>
-                                        <a href="javascript:xoa_id('<?php
-                                        echo $row[0]; ?>')"
+                                        <a href="javascript:xoa_id('')"
                                            class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
                                         </a>
@@ -73,6 +69,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                 </footer>
             </div>
         </div>
+    </section>
     </section>
 
 <?php

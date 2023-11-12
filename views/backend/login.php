@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
     <div class="w3layouts-main">
         <h2>Đăng nhập</h2>
-        <form action="<?php echo route();?>admin/login" method="POST">
+        <form action="<?php echo route();?>admin/show-login" method="POST">
             <input type="text" class="ggg" name=username placeholder="Tên tài khoản" required="">
             <input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
             <span><input type="checkbox" />Nhớ tài khoản</span>
@@ -36,7 +36,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </form>
     </div>
 </div>
-
 
 <script src="<?php echo route(); ?>assets/js/bootstrap.js"></script>
 <script src="<?php echo route(); ?>assets/js/jquery.dcjqaccordion.2.7.js"></script>

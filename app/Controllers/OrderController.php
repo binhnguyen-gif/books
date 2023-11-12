@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Helpers\CustomSession;
-use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -26,6 +25,7 @@ class OrderController extends Controller
                 $order = [
                     'username' => $_POST['username'] ?? '',
                     'user_id' => Order::STAFF,
+                    'order_code' => random_str(10),
                     'customer_id' => $customer_id,
                     'phone' => $_POST['phone'] ?? '',
                     'address' => $_POST['address'] ?? '',
@@ -67,7 +67,7 @@ class OrderController extends Controller
             if ($order['payment_type'] == 1) {
                 $data_url = VNPay::vnpay_create_payment([
                     'vnp_TxnRef' => $newOrder['id'],
-                    'vnp_OrderInfo' => "Mã đơn hàng: # {$newOrder['id']}",
+                    'vnp_OrderInfo' => "Mã đơn hàng: # {$newOrder['order_code']}",
                     'vnp_Amount' => $order['total_price'],
                 ]);
 

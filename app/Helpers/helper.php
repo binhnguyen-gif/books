@@ -164,7 +164,7 @@ if (!function_exists('userAdmin')) {
 if (!function_exists('checkAdmin')) {
     function checkAdmin(): bool
     {
-        if (!isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             return true;
         }
 
@@ -189,7 +189,21 @@ if (!function_exists('listPublish')) {
 if (!function_exists('file_name')) {
     function file_name($image): string
     {
-        return strtotime(date('Y-m-d')). '_' . $_FILES["{$image}"]["name"];
+        return strtotime(date('Y-m-d')).'_'.$_FILES["{$image}"]["name"];
+    }
+}
+
+if (!function_exists('delete_file')) {
+    function delete_file($image): string
+    {
+        $file = 'assets/images/product/'.$image;
+
+        if (file_exists($file)) {
+            unlink($file);
+            return true;
+        }
+
+        return false;
     }
 }
 
@@ -197,6 +211,30 @@ if (!function_exists('check_upload')) {
     function check_upload($image): bool
     {
         return isset($_FILES["{$image}"]);
+    }
+}
+
+if (!function_exists('paymentType')) {
+    function paymentType($type)
+    {
+        return ($type == \App\Models\Order::PAID) ? 'Thanh toán trực tuyến' : 'Thanh toán khi nhận hàng';
+    }
+}
+
+if (!function_exists('random_str')) {
+    function random_str(
+        int $length = 64,
+        string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ): string {
+        if ($length < 1) {
+            throw new \RangeException("Length must be a positive integer");
+        }
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            $pieces [] = $keyspace[random_int(0, $max)];
+        }
+        return implode('', $pieces);
     }
 }
 
