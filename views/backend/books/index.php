@@ -10,7 +10,7 @@
                 </div>
                 <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="<?php echo route(); ?>admin/create" class="btn btn-primary ">Thêm sản phẩm</a>
+                        <a href="<?php echo route(); ?>admin/book/create" class="btn btn-primary ">Thêm sản phẩm</a>
                     </div>
                     <div class="col-sm-4">
                     </div>

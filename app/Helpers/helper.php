@@ -189,7 +189,14 @@ if (!function_exists('listPublish')) {
 if (!function_exists('file_name')) {
     function file_name($image): string
     {
-        return strtotime(date('Y-m-d')).$_FILES["{$image}"]["name"];
+        return strtotime(date('Y-m-d')). '_' . $_FILES["{$image}"]["name"];
+    }
+}
+
+if (!function_exists('check_upload')) {
+    function check_upload($image): bool
+    {
+        return isset($_FILES["{$image}"]);
     }
 }
 

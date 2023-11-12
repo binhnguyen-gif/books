@@ -1,4 +1,5 @@
 <?php
+
 include(__DIR__.'/../common/header.php'); ?>
 <?php
 include(__DIR__.'/../common/aside.php'); ?>
@@ -13,10 +14,13 @@ include(__DIR__.'/../common/aside.php'); ?>
                     <div class="panel-body">
                         <div class="position-center">
                             <?php
-                            $route =isset($book) ? (route() . 'admin/book/update') : (route() . 'admin/book/create');
+                            $route = isset($book) ? (route().'admin/book/update') : (route().'admin/book/create');
                             ?>
-                            <form role="form" action="<?php echo $route; ?>" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
+                            <form role="form" action="<?php
+                            echo $route; ?>" method="POST" enctype="multipart/form-data">
+<!--                                <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">-->
+                                <input type="hidden" name="book_id" value="<?php
+                                echo isset($book['id']) ? $book['id'] : ''; ?>">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm:</label>
                                     <input type="text" value="<?php
@@ -27,8 +31,10 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
                                     <input type="file" class="form-control image-preview" name="image"
                                            id="exampleInputEmail1" onchange="previewFile(this);">
-                                    <?php $image = isset($book) ? (route() . 'assets/images/product/' .$book['image']) : ''; ?>
-                                    <img src="<?php echo $image ?>" height="100" width="100" alt="">
+                                    <?php
+                                    $image = isset($book) ? (route().'assets/images/product/'.$book['image']) : ''; ?>
+                                    <img src="<?php
+                                    echo $image ?>" height="100" width="100" alt="">
                                     <!-- <img src="https://lukoilonline.com/uploadFiles/default.png" width="20%" id="previewImg" > -->
                                 </div>
                                 <div class="form-group">
@@ -65,39 +71,53 @@ include(__DIR__.'/../common/aside.php'); ?>
                                               placeholder="chi tiết sản phẩm"><?php
                                         echo isset($book['detail']) ? $book['detail'] : ''; ?></textarea>
                                 </div>
+                                <?php
+                                $publish_id = isset($book['publish_id']) ?? null;
+                                $category_id = isset($book['category_id']) ?? null;
+                                ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label><br/>
-                                    <select name="brand_sp" class="form-control">
-                                        <?php foreach (listPublish() as $publish) {?>
-                                            <option value="<?php echo $publish['id'] ?>" <?php echo ($publish['id'] == $book['publish_id']) ? 'selected' : ''; ?> ><?php echo $publish['name'] ?></option>
-                                        <?php }?>
+                                    <select name="publish_id" class="form-control">
+                                        <?php
+                                        foreach (listPublish() as $publish) { ?>
+                                            <option value="<?php
+                                            echo $publish['id'] ?>" <?php
+                                            echo ($publish['id'] == $publish_id) ? 'selected' : ''; ?> ><?php
+                                                echo $publish['name'] ?></option>
+                                        <?php
+                                        } ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên danh mục:</label><br/>
-                                    <select name="category_sp" class="form-control">
-                                        <?php foreach (listCategories() as $category) {?>
-                                        <option value="<?php echo $category['id'] ?>" <?php echo ($category['id'] == $book['category_id']) ? 'selected' : ''; ?> ><?php echo $category['name'] ?></option>
-                                        <?php }?>
+                                    <select name="category_id" class="form-control">
+                                        <?php
+                                        foreach (listCategories() as $category) { ?>
+                                            <option value="<?php
+                                            echo $category['id'] ?>" <?php
+                                            echo ($category['id'] == $category_id) ? 'selected' : ''; ?> ><?php
+                                                echo $category['name'] ?></option>
+                                        <?php
+                                        } ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hiển Thị</label><br/>
-                                    <select name="sp_status" class="form-control trol input-lg m-bot15">
+                                    <select name="status" class="form-control trol input-lg m-bot15">
                                         <option value="1">Đăng</option>
                                         <option value="0">Ngừng</option>
                                     </select>
                                 </div>
                                 <?php
                                 if (isset($book)) { ?>
-                                    <button type="submit" name="updateBook" class="btn btn-info">Cập nhật Sản phẩm
+                                    <button type="submit" name="updateBook" class="btn btn-info">Cập nhật sản phẩm
                                     </button>
-                                <?php
+                                    <?php
                                 } else { ?>
-                                    <button type="submit" name="addBook" class="btn btn-info">Cập nhật Sản phẩm</button>
-                                <?php
+                                    <button type="submit" name="addBook" class="btn btn-info">Thêm sản phẩm</button>
+                                    <?php
                                 } ?>
-                                <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
+                                <a href="javascript:void(0);" class="btn btn-info">Quay lại</a>
                             </form>
                         </div>
                     </div>

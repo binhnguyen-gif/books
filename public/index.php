@@ -47,6 +47,7 @@ $router
     ->post('/admin/show-login', [AdminLogin::class, 'login'])
     ->get('/admin/list-book', [AdminBook::class, 'list'])
     ->get('/admin/book/create', [AdminBook::class, 'create'])
+    ->post('/admin/book/create', [AdminBook::class, 'store'])
     ->get('/admin/book/show', [AdminBook::class, 'show'])
     ->post('/admin/book/update', [AdminBook::class, 'update'])
     ->post('/admin/book/delete', [AdminBook::class, 'delete']);

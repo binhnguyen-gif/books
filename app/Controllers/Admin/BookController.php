@@ -19,7 +19,7 @@ class BookController extends Controller
 
     public function create(): View
     {
-        return View::make('backend/books/create');
+        return View::make('backend/books/create_update');
     }
 
     public function store()
@@ -31,27 +31,13 @@ class BookController extends Controller
         try {
             if (checkMethod('POST') && isset($_POST['addBook'])) {
                 $this->updateFile('image');
-                $book = [
-                    'name' => $_POST['name'],
-                    'slug' => create_slug($_POST['name']),
-//            'author' => $_POST['title'],
-                    'old_price' => $_POST['old_price'],
-                    'price' => $_POST['price'],
-                    'qty' => $_POST['qty'],
-                    'image' => file_name('image'),
-                    'category_id' => $_POST['category_id'],
-                    'publish_id' => $_POST['publish_id'],
-                    'description' => $_POST['description'],
-                    'detail' => $_POST['detail'],
-                    'posted_date' => date('Y-m-d'),
-                    'status' => $_POST['status'],
-                ];
-
-                (new Book())->insert($book);
+                $newBook = $this->extracted();
+                (new Book())->insert($newBook);
             }
 
         } catch (\Exception $e) {
             CustomSession::put('error', 'Lỗi book');
+            back();
         }
 
         CustomSession::put('success', 'Thêm thành công');
@@ -64,7 +50,7 @@ class BookController extends Controller
         try {
             $id = $_GET['book_id'];
             $book = (new Book())->getById($id);
-            return View::make('backend/books/create', ['book' => $book]);
+            return View::make('backend/books/create_update', ['book' => $book]);
         } catch (\Exception $e) {
             return View::make('errors/404');
         }
@@ -72,10 +58,32 @@ class BookController extends Controller
 
     public function update()
     {
+        if(checkAdmin()) {
+            redirect(customRoute('admin/login'));
+        }
+
+        try {
+            if (checkMethod('POST') && isset($_POST['updateBook'])) {
+                if(check_upload('image')) {
+                    $this->updateFile('image');
+                }
+                $id = $_POST['book_id'];
+                $book = $this->extracted();
+                (new Book())->update($id, $book);
+            }
+
+        } catch (\Exception $e) {
+            CustomSession::put('error', 'Lỗi book');
+            back();
+        }
+
+        CustomSession::put('success', 'Update thành công');
+        back();
     }
 
     public function delete()
     {
+
     }
 
 
@@ -96,6 +104,28 @@ class BookController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @return void
+     */
+    protected function extracted(): array
+    {
+        return [
+            'name' => $_POST['name'],
+            'slug' => create_slug($_POST['name']),
+//            'author' => $_POST['title'],
+            'old_price' => $_POST['old_price'],
+            'price' => $_POST['price'],
+            'qty' => $_POST['qty'],
+            'image' => file_name('image'),
+            'category_id' => $_POST['category_id'],
+            'publish_id' => $_POST['publish_id'],
+            'description' => $_POST['description'],
+            'detail' => $_POST['detail'],
+            'posted_date' => date('Y-m-d'),
+            'status' => $_POST['status'],
+        ];
     }
 
 
