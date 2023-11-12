@@ -12,6 +12,8 @@ use App\Controllers\BookController;
 use App\Controllers\CartController;
 use App\Controllers\OrderController;
 use App\Controllers\Admin\DashboardController;
+use App\Controllers\Admin\LoginController as AdminLogin;
+use App\Controllers\Admin\BookController as AdminBook;
 use App\Router;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -40,7 +42,14 @@ $router
     ->post('/delete-book', [CartController::class, 'delete'])
     ->post('/order', [OrderController::class, 'store'])
     ->get('/checkout/vnPayCheck', [OrderController::class, 'vnPayCheck'])
-    ->get('/admin', [DashboardController::class, 'index']);
+    ->get('/admin', [DashboardController::class, 'index'])
+    ->get('/admin/login', [DashboardController::class, 'login'])
+    ->post('/admin/show-login', [AdminLogin::class, 'login'])
+    ->get('/admin/list-book', [AdminBook::class, 'list'])
+    ->get('/admin/book/create', [AdminBook::class, 'create'])
+    ->get('/admin/book/show', [AdminBook::class, 'show'])
+    ->post('/admin/book/update', [AdminBook::class, 'update'])
+    ->post('/admin/book/delete', [AdminBook::class, 'delete']);
 (new App(
     $router,
     ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']],

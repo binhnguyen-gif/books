@@ -18,7 +18,7 @@ class OrderController extends Controller
 
         if (!$customer_id) {
             CustomSession::put('msg', 'Bạn cần đăng nhập thể thực hiện đặt hàng');
-            redirect(route());
+            back();
         }
 
         try {
@@ -35,12 +35,13 @@ class OrderController extends Controller
                 ];
 
                 $this->placeOrder($order, $customer_id);
-                CustomSession::put('success', 'Đặt hàng thành công');
             }
         } catch (\Exception $e) {
             echo 'Lỗi: '.$e->getMessage().' Line:'.$e->getLine();
             return View::make('errors/503');
         }
+
+        CustomSession::put('warning', 'Không có sản phẩm nào trong giỏ hàng');
         redirect(route());
     }
 
@@ -74,6 +75,8 @@ class OrderController extends Controller
             }
 
             (new Cart())->deleteCart($customer_id);
+            CustomSession::put('info', 'Đặt hàng thành công');
+            redirect(route());
         }
     }
 
@@ -92,14 +95,12 @@ class OrderController extends Controller
                 redirect(route());
             } elseif ($vnp_ResponseCode == 24) {
                 (new Order())->delete($vnp_TxnRef);
-                (new Cart())->deleteCart($customer_id);
                 CustomSession::put('warning', 'Bạn đã hủy đặt hàng');
-                redirect(route());
+                redirect(customRoute('cart'));
             } else {
                 (new Order())->delete($vnp_TxnRef);
-                (new Cart())->deleteCart($customer_id);
                 CustomSession::put('error', 'Lỗi đặt hàng');
-                redirect(route());
+                redirect(customRoute('cart'));
             }
         }
     }

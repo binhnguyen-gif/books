@@ -118,7 +118,7 @@
 
 						<div class="col-sm-7 agileits_search search_box pull-right " style="margin-top: -10px;">
 							<form class="form-inline" action="<?php echo route(); ?>" method="GET">
-								<input class="form-control mr-sm-2" name="search" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" required>
+								<input class="form-control mr-sm-2" name="search" type="search" placeholder="Tìm kiếm sản phẩm " aria-label="Search">
 								<button class="btn my-2 my-sm-0" type="submit">Tìm kiếm</button>
 							</form>
 						</div>

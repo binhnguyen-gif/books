@@ -19,6 +19,7 @@ class Book extends Model
 
         return $this->getDataByQuery($query, $data ?? []);
     }
+
     public function getAllProductByCategory($id)
     {
         $data = ['category_id' => $id];
@@ -38,6 +39,14 @@ class Book extends Model
         $query = "SELECT * FROM {$this->table} ORDER BY {$column} {$condition}";
 
         return $this->getDataByQuery($query, $data ?? []);
+    }
+
+    public function getListBook()
+    {
+        $query = "SELECT {$this->table}.*, c.name as name_category, p.name as name_publish FROM {$this->table} 
+                  JOIN categories c ON {$this->table}.category_id = c.id JOIN publish p ON {$this->table}.publish_id = p.id";
+
+        return $this->getAllData($query, $data ?? []);
     }
 
     protected function getTableName(): string

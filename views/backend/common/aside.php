@@ -56,7 +56,7 @@
                     </a>
                     <ul class="sub">
 
-                        <li><a href="quanlisp.php">Quản lý sản phẩm</a></li>
+                        <li><a href="<?php echo route();?>admin/list-book">Quản lý sản phẩm</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

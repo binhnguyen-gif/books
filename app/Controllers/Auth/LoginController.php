@@ -3,6 +3,8 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\Controller;
+use App\Helpers\CustomSession;
+use App\Helpers\SessionFlash;
 use App\Models\Customer;
 
 class LoginController extends Controller
@@ -16,8 +18,10 @@ class LoginController extends Controller
         $credentials = $user->login($username, $password);
         if (!empty($credentials)) {
             $_SESSION['customer'] = $credentials;
+            CustomSession::put('info', 'Đăng nhập thành công');
             redirect(route());
         } else {
+            CustomSession::put('warning', 'Tài khoản hoặc mật khẩu không chính xác');
             redirect(route());
         }
     }

@@ -14,6 +14,7 @@ class HomeController
     public function index(): View
     {
         $search = $_GET['search'] ?? '';
+
         $books = (new Book())->getBooksByKey($search);
         $sellingBooks = (new Book())->getBooksByCondition('qty_buy', 'DESC');
         $categories = (new Category())->getAll();
@@ -24,7 +25,8 @@ class HomeController
 
     public function books() {
         $booksByCategory = (new Category())->getAllProductByCategory();
+        $publish = (new Publish())->getAll();
 //        print_pre($booksByCategory);die();
-        return View::make('category_books', ['booksByCategory' => $booksByCategory]);
+        return View::make('category_books', ['booksByCategory' => $booksByCategory, 'publish' => $publish]);
     }
 }

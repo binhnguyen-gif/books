@@ -104,7 +104,11 @@
         }
     </script>
     <script>
-<?php customToaster('success') ?>
+    <?php customToaster('success');
+    customToaster('warning');
+    customToaster('error');
+    customToaster('info');
+    ?>
     </script>
     </body>
 </html>

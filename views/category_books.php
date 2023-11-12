@@ -13,13 +13,18 @@ require_once 'Sliderbar.php';
                             <h2>NHÀ XUẤT BẢN</h2>
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="?quanly=thuonghieu&brand_id="> <span class="pull-right"></span></a>
-                                    </li>
+                                    <?php
+                                    $publish = isset($publish) ? $publish : [];
+                                    foreach ($publish as $value) { ?>
+                                        <li><a href="#"><span class="pull-right"></span><?php
+                                                echo $value['name']; ?></a></li>
+                                        <?php
+                                    } ?>
                                 </ul>
                             </div>
                         </div><!--/brands_products-->
                         <div><!--shipping-->
-                            <img style="margin: 10px auto;" src="images/shop/nha-sach-tiki.jpg" alt=""/>
+                            <img style="margin: 10px auto;" src="<?php echo route(); ?>assets/images/shop/nha-sach-tiki.jpg" alt=""/>
                         </div><!--/shipping-->
 
                     </div>
