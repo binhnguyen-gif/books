@@ -7,6 +7,8 @@ use App\Model;
 class Order extends Model
 {
 
+    private string $table = 'orders';
+
     const STAFF = 0;
     const PENDING = 0;
     const PREPARE = 1;
@@ -16,9 +18,8 @@ class Order extends Model
     const STAFF_CANCEL = 5;
     const PAID = 1;
     const UNPAID = 0;
-    private $table = 'orders';
 
-    public function getOrdersByCustomer($customer_id)
+    public function getOrdersByCustomer($customer_id): ?array
     {
         $data = ['customer_id' => $customer_id];
         $query = "SELECT * FROM {$this->table} WHERE customer_id = :customer_id";

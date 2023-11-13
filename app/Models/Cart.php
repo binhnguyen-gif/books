@@ -6,7 +6,7 @@ use App\Model;
 
 class Cart extends Model
 {
-    private $table = 'cart';
+    private string $table = 'cart';
 
     public function getCartByCustomer($customer_id)
     {

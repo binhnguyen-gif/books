@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Model;
 class Category extends Model
 {
-    protected $table = 'categories';
+    protected string $table = 'categories';
 
-    public function getAllProductByCategory()
+    public function getAllProductByCategory(): array
     {
         $query = "SELECT c.*, CASE WHEN COUNT(b.id) > 0 
                         THEN JSON_ARRAYAGG(JSON_OBJECT('id', b.id, 'name', b.name, 'price', b.price, 'old_price', b.old_price, 'image', b.image))

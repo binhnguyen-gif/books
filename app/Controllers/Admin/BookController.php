@@ -64,12 +64,16 @@ class BookController extends Controller
     {
         try {
             if (checkMethod('POST') && isset($_POST['updateBook'])) {
-                if (check_upload('image')) {
+                $id = $_POST['book_id'];
+                $book = (new Book())->getById($id);
+
+                if (!check_upload('image')) {
+//                    var_dump('vao');die();
+                    delete_file($book['image']);
                     $this->updateFile('image');
                 }
-                $id = $_POST['book_id'];
-                $book = $this->extracted();
-                $result = (new Book())->update($id, $book);
+                $input = $this->extracted();
+                $result = (new Book())->update($id, $input);
                 if ($result) {
                     CustomSession::put('success', 'Update thành công');
                 }
@@ -102,10 +106,10 @@ class BookController extends Controller
     protected function updateFile($image): bool
     {
         if ($_FILES["{$image}"]["error"] > 0) {
-            echo "Return Code: ".$_FILES["{$image}"]["error"]."<br>";
+            echo "Return Code: ".$_FILES["{$image}"]["error"]."<br>";die();
         } else {
-            if (file_exists("assets/images/product/".$_FILES["{$image}"]["name"])) {
-                echo $_FILES["{$image}"]["name"]." already exists. ";
+            if (file_exists("assets/images/product/".file_name('image'))) {
+                echo $_FILES["{$image}"]["name"]." already exists. ";die();
             } else {
                 move_uploaded_file(
                     $_FILES["{$image}"]["tmp_name"],

@@ -105,10 +105,17 @@ include(__DIR__.'/../common/aside.php'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hiển Thị</label><br/>
-                                    <select name="status" class="form-control trol input-lg m-bot15">
-                                        <option value="1">Đăng</option>
-                                        <option value="0">Ngừng</option>
-                                    </select>
+                                    <label>
+                                        <select name="status" class="form-control">
+                                            <?php
+                                            $status = isset($book['status']) ? $book['status'] : null;
+                                            foreach (book_status() as $index => $book_status) { ?>
+                                                <option value="<?php echo $index ?>" <?php echo ($index == $status) ? 'selected' : ''; ?> ><?php
+                                                    echo $book_status ?></option>
+                                                <?php
+                                            } ?>
+                                        </select>
+                                    </label>
                                 </div>
                                 <?php
                                 if (isset($book)) { ?>

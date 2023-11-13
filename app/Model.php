@@ -124,5 +124,12 @@ abstract class Model
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function count($column): array
+    {
+        $query = $this->db->query("SELECT * FROM {$this->tableName}");
+
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     abstract protected function getTableName(): string;
 }

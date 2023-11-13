@@ -6,42 +6,52 @@ use App\Model;
 
 class Book extends Model
 {
-    private $table = 'books';
+    private string $table = 'books';
 
-    public function getBooksByKey($search)
+
+//    const STATUS = [
+//        1 => 'activated',
+//        0 => 'not_activated'
+//    ];
+    const STATUS = [
+        1 => 'Đăng',
+        0 => 'Ngừng đăng'
+    ];
+
+    public function getBooksByKey($search): ?array
     {
-        $query = "SELECT * FROM {$this->table}";
+        $query = "SELECT * FROM {$this->table} WHERE status <> 0";
 
         if (!empty($search)) {
             $data = ['key' => "%{$search}%"];
-            $query = "SELECT * FROM {$this->table} WHERE name LIKE :key";
+            $query = "SELECT * FROM {$this->table} WHERE name LIKE :key AND status <> 0";
         }
 
         return $this->getDataByQuery($query, $data ?? []);
     }
 
-    public function getAllProductByCategory($id)
+    public function getAllProductByCategory($id): ?array
     {
         $data = ['category_id' => $id];
         $query = "SELECT * FROM {$this->table} WHERE category_id = :category_id";
         return $this->getDataByQuery($query, $data);
     }
 
-    public function getRelatedProducts($id, $category_id)
+    public function getRelatedProducts($id, $category_id): ?array
     {
         $data = ['id' => $id, 'category_id' => $category_id];
         $query = "SELECT * FROM {$this->table} WHERE id <> :id AND category_id = :category_id";
         return $this->getDataByQuery($query, $data);
     }
 
-    public function getBooksByCondition($column, $condition)
+    public function getBooksByCondition($column, $condition): ?array
     {
         $query = "SELECT * FROM {$this->table} ORDER BY {$column} {$condition}";
 
         return $this->getDataByQuery($query, $data ?? []);
     }
 
-    public function getListBook()
+    public function getListBook(): array
     {
         $query = "SELECT {$this->table}.*, c.name as name_category, p.name as name_publish FROM {$this->table} 
                   JOIN categories c ON {$this->table}.category_id = c.id JOIN publish p ON {$this->table}.publish_id = p.id";

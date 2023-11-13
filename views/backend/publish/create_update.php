@@ -20,6 +20,8 @@ include(__DIR__.'/../common/aside.php'); ?>
                         <form role="form" action="<?php
                         echo $route; ?>" method="POST">
                             <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
+                            <input type="hidden" name="publish_id" value="<?php
+                            echo isset($publish['id']) ? $publish['id'] : '' ?>">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên nhà xuất bản:</label>
                                 <input type="text" class="form-control" name="name" id="exampleInputEmail1" value="<?php

@@ -210,7 +210,7 @@ if (!function_exists('delete_file')) {
 if (!function_exists('check_upload')) {
     function check_upload($image): bool
     {
-        return isset($_FILES["{$image}"]);
+        return empty($_FILES["{$image}"]["name"]);
     }
 }
 
@@ -218,6 +218,13 @@ if (!function_exists('paymentType')) {
     function paymentType($type)
     {
         return ($type == \App\Models\Order::PAID) ? 'Thanh toán trực tuyến' : 'Thanh toán khi nhận hàng';
+    }
+}
+
+if (!function_exists('book_status')) {
+    function book_status()
+    {
+        return \App\Models\Book::STATUS;
     }
 }
 

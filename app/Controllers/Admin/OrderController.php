@@ -30,29 +30,6 @@ class OrderController extends Controller
         return View::make('backend/order/create_update');
     }
 
-    public function store()
-    {
-        if(!checkAdmin()) {
-            redirect(customRoute('admin/login'));
-        }
-
-        try {
-            if (checkMethod('POST') && isset($_POST['addCategory'])) {
-                $this->updateFile('image');
-                $newBook = $this->extracted();
-                $newBook['order_code'] = random_str(10);
-                (new Book())->insert($newBook);
-            }
-
-        } catch (\Exception $e) {
-            CustomSession::put('error', 'Lỗi book');
-            back();
-        }
-
-        CustomSession::put('success', 'Thêm thành công');
-        back();
-    }
-
     public function show(): View
     {
         try {
@@ -94,29 +71,6 @@ class OrderController extends Controller
 
     }
 
-
-    protected function updateFile($image): bool
-    {
-        if ($_FILES["{$image}"]["error"] > 0) {
-            echo "Return Code: ".$_FILES["{$image}"]["error"]."<br>";
-        } else {
-            if (file_exists("assets/images/product/".$_FILES["{$image}"]["name"])) {
-                echo $_FILES["{$image}"]["name"]." already exists. ";
-            } else {
-                move_uploaded_file(
-                    $_FILES["{$image}"]["tmp_name"],
-                    "assets/images/product/".file_name('image')
-                );
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return void
-     */
     protected function extracted(): array
     {
         return [

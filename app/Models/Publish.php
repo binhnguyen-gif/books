@@ -7,7 +7,7 @@ use App\Model;
 class Publish extends Model
 {
 
-    protected $table = 'publish';
+    protected string $table = 'publish';
 
     protected function getTableName(): string
     {

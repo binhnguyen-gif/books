@@ -6,9 +6,9 @@ use App\Model;
 
 class OrderDetail extends Model
 {
-    private $table = 'order_detail';
+    private string $table = 'order_detail';
 
-    public function getOrderDetailsByCustomer($order_id)
+    public function getOrderDetailsByCustomer($order_id): ?array
     {
         $data = ['order_id' => $order_id];
         $query = "SELECT {$this->table}.quantity, {$this->table}.total_price, b.name, b.price FROM {$this->table} JOIN books b ON {$this->table}.book_id = b.id WHERE order_id = :order_id";
