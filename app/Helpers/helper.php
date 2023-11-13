@@ -3,6 +3,7 @@
 use App\Helpers\SessionFlash;
 use App\Helpers\CustomSession;
 use App\View;
+use App\Models\Order;
 
 if (!function_exists('customRoute')) {
     function customRoute($param): string
@@ -45,13 +46,10 @@ if (!function_exists('redirect')) {
     {
         error_reporting(E_ALL);
         echo 'This is an error';
-//        var_dump($url);die();
         if (!headers_sent()) {
-//            header("Location: $url");
             header('Location: '.$url, true, 302);
             exit();
         } else {
-            // Xử lý khi header đã được gửi
             echo "Headers have already been sent.";
         }
     }
@@ -234,6 +232,45 @@ if (!function_exists('book_status')) {
         return \App\Models\Book::STATUS;
     }
 }
+
+if (!function_exists('orderStatus')) {
+    function orderStatus()
+    {
+        return [
+            Order::PENDING => 'Chờ xác nhận',
+            Order::PREPARE => 'Chờ lấy hàng',
+            Order::DELIVERING => 'Đang giao',
+            Order::DELIVERED => 'Đã giao',
+//            Order::CUSTOMER_CANCEL => 'Khách hàng đã hủy',
+            Order::STAFF_CANCEL => 'Hủy đơn'
+        ];
+    }
+}
+
+if (!function_exists('getOrderStatusAttribute')) {
+    function getOrderStatusAttribute($status)
+    {
+        $order_status = [
+            'pending' => 'Chờ xác nhận',
+            'prepare' => 'Chờ lấy hàng',
+            'delivering' => 'Đang giao',
+            'delivered' => 'Đã giao',
+            'customer_cancel' => 'Khách hàng đã hủy',
+            'staff_cancel' => 'Nhân viên đã hủy'
+        ];
+
+        return match ($status) {
+            Order::PENDING => $order_status['pending'],
+            Order::PREPARE => $order_status['prepare'],
+            Order::DELIVERING => $order_status['delivering'],
+            Order::DELIVERED => $order_status['delivered'],
+            Order::CUSTOMER_CANCEL => $order_status['customer_cancel'],
+            Order::STAFF_CANCEL => $order_status['staff_cancel'],
+            default => 'WRONG',
+        };
+    }
+}
+
 
 if (!function_exists('random_str')) {
     function random_str(

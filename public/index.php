@@ -75,6 +75,7 @@ $router
     ->post('/admin/customer/update', [AdminCustomer::class, 'update'])
     ->get('/admin/customer/delete', [AdminCustomer::class, 'delete'])
     ->get('/admin/list-order', [AdminOrder::class, 'list'])
+    ->post('/admin/order/status', [AdminOrder::class, 'status'])
     ->get('/admin/order/show', [AdminOrder::class, 'show']);
 
 (new App(

@@ -55,12 +55,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                 <td>
                                     <span style="font-size: 17px;">
                                     <?php
-                                    if ($order['status'] == 1) {
-                                        echo 'Đã xử lý';
-                                    }
-                                    if ($order['status'] == 0) {
-                                        echo 'Đang xử lý';
-                                    }
+                                    echo getOrderStatusAttribute($order['status']);
                                     ?>
                                     </span>
                                 </td>
