@@ -35,7 +35,7 @@ abstract class Model
     {
         try {
             $columns = implode(', ', array_keys($data));
-            $values = ':' . implode(', :', array_keys($data));
+            $values = ':'.implode(', :', array_keys($data));
             $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
 
             return $query->execute($data);
@@ -49,7 +49,7 @@ abstract class Model
     {
         try {
             $columns = implode(', ', array_keys($data));
-            $values = ':' . implode(', :', array_keys($data));
+            $values = ':'.implode(', :', array_keys($data));
             $query = $this->db->prepare("INSERT INTO {$this->tableName} ($columns) VALUES ($values)");
 
             if ($query->execute($data)) {
@@ -66,7 +66,7 @@ abstract class Model
                 return false;
             }
         } catch (\PDOException $e) {
-            echo 'Lỗi: ' . $e->getMessage();
+            echo 'Lỗi: '.$e->getMessage();
             return false;
         }
     }
@@ -124,11 +124,17 @@ abstract class Model
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function count($column): array
+    public function count($status = null): array
     {
-        $query = $this->db->query("SELECT * FROM {$this->tableName}");
+        $sql = "SELECT COUNT(id) as total FROM {$this->tableName}";
 
-        return $query->fetchAll(\PDO::FETCH_ASSOC);
+        if (!empty($status)) {
+            $sql .= " WHERE status = :status";
+        }
+        $query = $this->db->prepare($sql);
+        $query->execute($status ?? []);
+
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
     abstract protected function getTableName(): string;

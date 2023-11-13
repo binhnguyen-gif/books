@@ -107,7 +107,6 @@ echo route(); ?>/assets/js/monthly.js"></script>
 <!-- //calendar -->
 <script>
     function showToast(messageType, message) {
-        console.log('vaod');
         toastr.options = {
             "closeButton": true,
             "debug": false,

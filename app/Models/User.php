@@ -12,7 +12,7 @@ class User extends Model
     {
         $query = "SELECT * FROM {$this->table} WHERE username = :username AND password = :password LIMIT 1";
 
-        return $this->getDataByQuery($query, ['username' => $username, 'password' => $password]);
+        return $this->getData($query, ['username' => $username, 'password' => $password]);
     }
 
     public function register($info)

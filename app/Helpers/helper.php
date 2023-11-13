@@ -151,6 +151,13 @@ if (!function_exists('customToaster')) {
     }
 }
 
+if (!function_exists('user')) {
+    function user()
+    {
+        return $_SESSION['user'] ?? '';
+    }
+}
+
 if (!function_exists('userAdmin')) {
     function userAdmin(): void
     {

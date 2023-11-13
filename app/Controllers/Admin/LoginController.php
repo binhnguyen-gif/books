@@ -19,6 +19,7 @@ class LoginController extends Controller
             $credentials = $user->login($username, $password);
 
             if (!empty($credentials)) {
+                unset($credentials['password']);
                 $_SESSION['user'] = $credentials;
                 redirect(customRoute('admin'));
             } else {

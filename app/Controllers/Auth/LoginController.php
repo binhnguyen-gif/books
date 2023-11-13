@@ -17,6 +17,7 @@ class LoginController extends Controller
         $user = new Customer();
         $credentials = $user->login($username, $password);
         if (!empty($credentials)) {
+            unset($credentials['password']);
             $_SESSION['customer'] = $credentials;
             CustomSession::put('info', 'Đăng nhập thành công');
             redirect(route());

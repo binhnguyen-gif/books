@@ -75,13 +75,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="top-nav clearfix">
         <!--search & user info start-->
         <ul class="nav pull-right top-menu">
-
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="<?php
                     echo route(); ?>assets/images/shop/logo.png">
-                    <span class="username"><?php
+                    <span class="username"><?php echo user()['username'];
                         ?></span>
                     <b class="caret"></b>
                 </a>

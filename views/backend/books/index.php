@@ -46,7 +46,7 @@
                                     <td ><span style="font-size: 17px;"><?php echo $book['name_publish']; ?></span>
                                     </td>
                                     <td>
-                                        <span style="font-size: 17px;"><?php echo $book['posted_date']; ?></span>
+                                        <span style="font-size: 17px;"><?php echo date('Y-m-d', strtotime($book['posted_date'])); ?></span>
                                     </td>
 <!--                                    <td>-->
 <!--                                        <span style="font-size: 17px;">--><?php //echo $book['posted_date']; ?><!--</span>-->

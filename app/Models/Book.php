@@ -8,11 +8,9 @@ class Book extends Model
 {
     private string $table = 'books';
 
+    const ACTIVATED = 1;
+    const NOT_ACTIVATED = 0;
 
-//    const STATUS = [
-//        1 => 'activated',
-//        0 => 'not_activated'
-//    ];
     const STATUS = [
         1 => 'Đăng',
         0 => 'Ngừng đăng'
@@ -57,6 +55,11 @@ class Book extends Model
                   JOIN categories c ON {$this->table}.category_id = c.id JOIN publish p ON {$this->table}.publish_id = p.id";
 
         return $this->getAllData($query, $data ?? []);
+    }
+
+    public function getCount()
+    {
+        return $this->count();
     }
 
     protected function getTableName(): string
