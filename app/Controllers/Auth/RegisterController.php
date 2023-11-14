@@ -20,6 +20,7 @@ class RegisterController extends Controller
         $user = new Customer();
         $credentials = $user->create($info);
         if (!empty($credentials)) {
+            unset($credentials['password']);
             $_SESSION['customer'] = $credentials;
             redirect(route());
         } else {

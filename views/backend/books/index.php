@@ -91,13 +91,5 @@
             </div>
         </div>
     </section>
-    <!-- footer -->
-    <div class="footer">
-        <div class="wthree-copyright">
-            <p>© 2023 MAXBOOK | Thiết kế sáng tạo </p>
-        </div>
-    </div>
-    <!-- / footer -->
-    <!--main content end-->
-</section>
+
 <?php include(__DIR__ . '/../common/footer.php');?>

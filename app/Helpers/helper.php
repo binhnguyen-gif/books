@@ -80,7 +80,7 @@ if (!function_exists('checkLogin')) {
     function checkLogin(): bool
     {
         $user = $_SESSION['customer'] ?? null;
-        if ($user) {
+        if (!empty($user)) {
             return true;
         }
         return false;

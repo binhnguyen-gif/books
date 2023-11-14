@@ -47,7 +47,8 @@
                                         <td ><span style="font-size: 17px;"><?php echo $customer['phone']; ?></span></td>
                                         <td ><span style="font-size: 17px;"><?php echo $customer['email']; ?></span></td>
                                         <td ><span style="font-size: 17px;"><?php echo $customer['address']; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo date('Y-m-d', strtotime($customer['birthday'])); ?></span></td>
+                                        <?php $date = isset($customer['birthday']) ?  date('Y-m-d', strtotime($customer['birthday'])) : ''; ?>
+                                        <td ><span style="font-size: 17px;"><?php echo $date; ?></span></td>
 
 <!--                                        <td style="width: 12%;text-align: center">-->
 <!--                                            <a href="javascript:xemgiaodich('--><?php // ?><!--')">-->

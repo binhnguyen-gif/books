@@ -96,23 +96,15 @@ require_once 'common/aside.php';
                             </h3>
                             <p>Đã bán</p>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix">
+                        </div>
                     </a>
                 </div>
             </div>
-            <div class="clearfix"></div>
+            <div class="hero-area"></div>
         </div>
-        <!-- //market-->
-        <!-- footer -->
-        <div class="footer">
-            <div class="wthree-copyright">
-                <p>© 2023 MAXBOOK | Thiết kế bởi: minh</p>
-            </div>
-        </div>
-        <!-- / footer -->
-    </section>
 
-</section>
+    </section>
 <!--main content end-->
 <?php
 require_once 'common/footer.php';

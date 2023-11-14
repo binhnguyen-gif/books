@@ -80,6 +80,5 @@ include(__DIR__.'/../common/aside.php'); ?>
             </div>
         </div>
     </section>
-    </section>
 <?php
 include(__DIR__.'/../common/footer.php'); ?>

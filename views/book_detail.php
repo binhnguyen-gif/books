@@ -135,7 +135,6 @@ require_once 'Sliderbar.php'; ?>
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">Sản phẩm liên quan</h2>
 
-<?php //var_dump($relatedBooks);die(); ?>
                        <?php foreach ($relatedBooks as $relatedBook) { ?>
                         <div class="col-sm-4 ">
                             <div class="product-image-wrapper">
@@ -148,15 +147,14 @@ require_once 'Sliderbar.php'; ?>
                                                 <span class="old_price"><?php echo $relatedBook['old_price']; ?></span>
                                             </p>
                                             <p class="product-name" ><?php echo $relatedBook['name'];  ?></p>
-                                            <form action="?quanly=giohang" method="POST">
+                                            <form action="<?php
+                                            echo route(); ?>cart" method="POST">
                                                 <fieldset>
-                                                    <input type="hidden" name="tensanpham" value="<?php ?>"/>
-                                                    <input type="hidden" name="sanpham_id" value="<?php ?>"/>
-                                                    <input type="hidden" name="giasanpham" value="<?php ?>"/>
-                                                    <input type="hidden" name="hinhanh" value="<?php ?>"/>
-                                                    <input type="hidden" name="soluong" value="1"/>
-                                                    <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" />
-
+                                                    <input type="hidden" name="book_id" value="<?php
+                                                    echo $relatedBook['id']; ?>">
+                                                    <input type="submit" name="addCart"
+                                                           value="Thêm giỏ hàng"
+                                                           class="btn btn-default add-to-cart"/>
                                                 </fieldset>
                                             </form>
                                         </div>
