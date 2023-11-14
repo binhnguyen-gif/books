@@ -54,6 +54,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
         }
     </script>
+    <style>
+        #area-chart,
+        #line-chart,
+        #bar-chart,
+        #stacked,
+        #pie-chart{
+            min-height: 250px;
+        }
+
+        .hero-area {
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 

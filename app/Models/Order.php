@@ -32,6 +32,50 @@ class Order extends Model
         return $this->insertAndGet($order);
     }
 
+    public function sum($status = null): array
+    {
+        $sql = "SELECT SUM(total_price) as total FROM {$this->tableName}";
+
+        if (!empty($status)) {
+            $sql .= " WHERE status = :status";
+        }
+        $query = $this->db->prepare($sql);
+        $query->execute($status ?? []);
+
+        return $query->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function temporary() {
+        try {
+            $createTableQuery = "CREATE TEMPORARY TABLE all_months (month INT)";
+            $this->db->exec($createTableQuery);
+
+            $insertDataQuery = "INSERT INTO all_months VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12)";
+            $this->db->exec($insertDataQuery);
+
+            return $this->getTotalIncome();
+
+
+        } catch (\PDOException $e) {
+            echo 'Lỗi: ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getTotalIncome($year = null) {
+        $year = ['year' => $year ?? 2023];
+        $query_d = "SELECT all_months.month AS y,
+                           CAST(COALESCE(SUM(total_price), 0) AS UNSIGNED) AS a
+                    FROM all_months
+                    LEFT JOIN {$this->table} ON MONTH(booking_date) = all_months.month AND YEAR(booking_date) = :year
+                    GROUP BY all_months.month";
+
+        $query = $this->db->prepare($query_d);
+        $query->execute($year ?? []);
+
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 
     protected function getTableName(): string
     {

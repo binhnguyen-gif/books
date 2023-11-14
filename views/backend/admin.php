@@ -96,16 +96,44 @@ require_once 'common/aside.php';
                             </h3>
                             <p>Đã bán</p>
                         </div>
-                        <div class="clearfix">
-                        </div>
+<!--                        <div class="clearfix">-->
+<!--                        </div>-->
                     </a>
                 </div>
             </div>
+
             <div class="hero-area"></div>
         </div>
-
+<!--        <div class"row">-->
+<!--        <div class="col-sm-6 text-center">-->
+<!--            <label class="label label-success">Area Chart</label>-->
+<!--            <div id="area-chart" ></div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6 text-center">-->
+<!--            <label class="label label-success">Line Chart</label>-->
+<!--            <div id="line-chart"></div>-->
+<!--        </div>-->
+<!--        <div  class="col-sm-6 text-center">-->
+<!--            <label class="label label-success">Bar Chart</label>-->
+<!--            <div id="bar-chart" ></div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6 text-center">-->
+<!--            <label class="label label-success">Bar stacked</label>-->
+<!--            <div id="stacked" ></div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6 col-sm-offset-3 text-center">-->
+<!--            <label class="label label-success">Pie Chart</label>-->
+<!--            <div id="pie-chart" ></div>-->
+<!--        </div>-->
+<!---->
+<!--        </div>-->
     </section>
+    <?php var_dump($totalIncome); ?>
 <!--main content end-->
+    <script>
+        let dataIncome = '<?php echo $totalIncome; ?>';
+            console.log('<?php echo $totalIncome; ?>');
+    </script>
 <?php
 require_once 'common/footer.php';
 ?>

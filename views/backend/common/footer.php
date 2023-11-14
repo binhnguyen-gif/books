@@ -44,27 +44,66 @@ echo route(); ?>/assets/js/jquery.dataTables.min.js"></script>
             return new Date(year, month - 1, day).getTime();
         }
 
-        new Morris.Line({
-            // ID of the element in which to draw the chart.
+
+        const monthNames = ["", "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+            "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+        ];
+
+
+        Morris.Area({
             element: $('.hero-area'),
-            // Chart data records -- each entry in this array corresponds to a point on
-            // the chart.
-            data: [
-                { year: '2007', value: 0 },
-                { year: '2008', value: 20 },
-                { year: '2009', value: 10 },
-                { year: '2010', value: 5 },
-                { year: '2011', value: 5 },
-                { year: '2012', value: 20 }
-            ],
-            // The name of the data record attribute that contains x-values.
-            xkey: 'year',
-            // A list of names of data record attributes that contain y-values.
-            ykeys: ['value'],
-            // Labels for the ykeys -- will be displayed when you hover over the
-            // chart.
-            labels: ['Value']
+            data: dataIncome,
+            xkey: 'month',
+            parseTime: false,
+            ykeys: ['total'],
+            pointSize: 2,
+            xLabelFormat: function (x) {
+                var index = parseInt(x.src.y);
+                return monthNames[index];
+            },
+            xLabels: "month",
+            labels: ['Doanh thu'],
+            lineColors: ['#eb6f6f', '#926383'],
+            hideHover: 'auto'
+
         });
+
+        // var data = [
+        //         { y: '1', a: 50, b: 90},
+        //         { y: '2', a: 50, b: 90},
+        //         { y: '3', a: 50, b: 90},
+        //         { y: '4', a: 50, b: 90},
+        //         { y: '5', a: 65,  b: 75},
+        //         { y: '6', a: 50,  b: 50},
+        //         { y: '7', a: 75,  b: 60},
+        //         { y: '8', a: 80,  b: 65},
+        //         { y: '9', a: 90,  b: 70},
+        //         { y: '10', a: 100, b: 75},
+        //         { y: '11', a: 115, b: 75},
+        //         { y: '12', a: 120, b: 85},
+        //     ],
+        //     config = {
+        //         data: data,
+        //         xkey: 'y',
+        //         ykeys: ['a', 'b'],
+        //         labels: ['Total Income', 'Total Outcome'],
+        //         fillOpacity: 0.6,
+        //         hideHover: 'auto',
+        //         behaveLikeLine: true,
+        //         resize: true,
+        //         pointFillColors:['#ffffff'],
+        //         pointStrokeColors: ['black'],
+        //         lineColors:['gray','red']
+        //     };
+        // config.element = 'area-chart';
+        // Morris.Area(config);
+        // config.element = 'line-chart';
+        // Morris.Line(config);
+        // config.element = 'bar-chart';
+        // Morris.Bar(config);
+        // config.element = 'stacked';
+        // config.stacked = true;
+        // Morris.Bar(config);
 
         // graphArea2 = Morris.Line({
         //     element: $('.hero-area'),
@@ -100,7 +139,7 @@ echo route(); ?>/assets/js/jquery.dataTables.min.js"></script>
         //     resize: true,
         //     // xLabelFormat: function (x) {
         //     //     let day = x.getDay(),
-        //     //         days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        //     //         days = ["Sun", "Tháng Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         //     //     return days[day];
         //     // }
         // });
@@ -160,3 +199,6 @@ echo route(); ?>/assets/js/monthly.js"></script>
 </script>
 </body>
 </html>
+
+
+

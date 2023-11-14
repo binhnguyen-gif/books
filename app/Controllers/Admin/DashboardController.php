@@ -23,12 +23,18 @@ class DashboardController
         $totalOrderSold = (new Order())->count()['total'];
         $totalCategory = (new Category())->count()['total'];
 
+//        $totalIncome = (new Order())->sum(['status' => Order::DELIVERED])['total'];
+        $totalIncome = json_encode((new Order())->temporary());
+//        var_dump($totalIncome);die();
+
+
         return View::make('backend/admin',
             [
                 'totalBookForSale' => $totalBookForSale,
                 'totalCustomer' => $totalCustomer,
                 'totalOrderSold' => $totalOrderSold,
-                'totalCategory' => $totalCategory
+                'totalCategory' => $totalCategory,
+                'totalIncome' => $totalIncome,
             ]
         );
     }
