@@ -101,9 +101,8 @@ require_once 'common/aside.php';
                     </a>
                 </div>
             </div>
-
-            <div class="hero-area"></div>
         </div>
+        <div class="hero-area"></div>
 <!--        <div class"row">-->
 <!--        <div class="col-sm-6 text-center">-->
 <!--            <label class="label label-success">Area Chart</label>-->
@@ -128,11 +127,11 @@ require_once 'common/aside.php';
 <!---->
 <!--        </div>-->
     </section>
-    <?php var_dump($totalIncome); ?>
+<!--    --><?php //var_dump($totalIncome); ?>
 <!--main content end-->
     <script>
         let dataIncome = '<?php echo $totalIncome; ?>';
-            console.log('<?php echo $totalIncome; ?>');
+            //console.log('<?php //echo $totalIncome; ?>//');
     </script>
 <?php
 require_once 'common/footer.php';

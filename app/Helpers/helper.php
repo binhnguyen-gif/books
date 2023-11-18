@@ -32,6 +32,16 @@ if (!function_exists('route')) {
     }
 }
 
+if (!function_exists('home')) {
+    function home(): string
+    {
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'];
+
+        return "$protocol://$host/";
+    }
+}
+
 if (!function_exists('print_pre')) {
     function print_pre($data): void
     {
@@ -194,7 +204,7 @@ if (!function_exists('listPublish')) {
 if (!function_exists('file_name')) {
     function file_name($image): string
     {
-        return strtotime(date('Y-m-d')).'_'.$_FILES["{$image}"]["name"];
+        return date("Ymd").'_'.$_FILES["{$image}"]["name"];
     }
 }
 

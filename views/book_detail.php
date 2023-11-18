@@ -63,9 +63,11 @@ require_once 'Sliderbar.php'; ?>
                                         </fieldset>
                                     </form>
                                     <p><b>Tình trạng:</b> Mới 100 %</p>
-
                                     <p><b>Nhà cung cấp :</b>
-                                        <?php echo $book['category_id']; ?>
+                                        <?php foreach (listCategories() as $category) {
+                                            if($book['category_id'] == $category['id']) {?>
+                                                <?php echo $category['name']; ?>
+                                        <?php } }?>
                                     </p>
                                     <a href=""><img src="<?php echo route(); ?>assets/images/shop/share.png" class="share img-responsive"  alt="" /></a>
                                 <?php

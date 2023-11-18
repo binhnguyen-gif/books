@@ -49,13 +49,18 @@ echo route(); ?>/assets/js/jquery.dataTables.min.js"></script>
             "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
         ];
 
+        let modifiedJsonString = dataIncome.replace(/"y":(\d+),"a":(\d+)/g, 'y:$1,a:$2');
 
+        let jsonString = '[' + modifiedJsonString + ']';
+        let jsonArray = JSON.parse(jsonString.replace(/y:/g, '"y":').replace(/a:/g, '"a":'));
+
+        console.log(jsonArray[0]);
         Morris.Area({
             element: $('.hero-area'),
-            data: dataIncome,
-            xkey: 'month',
+            data: jsonArray[0],
+            xkey: 'y',
             parseTime: false,
-            ykeys: ['total'],
+            ykeys: ['a'],
             pointSize: 2,
             xLabelFormat: function (x) {
                 var index = parseInt(x.src.y);
@@ -81,7 +86,8 @@ echo route(); ?>/assets/js/jquery.dataTables.min.js"></script>
         //         { y: '10', a: 100, b: 75},
         //         { y: '11', a: 115, b: 75},
         //         { y: '12', a: 120, b: 85},
-        //     ],
+        //     ];
+        // console.log(data);
         //     config = {
         //         data: data,
         //         xkey: 'y',

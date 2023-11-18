@@ -122,9 +122,7 @@ class BookController extends Controller
         return false;
     }
 
-    /**
-     * @return void
-     */
+    
     protected function extracted(): array
     {
         return [

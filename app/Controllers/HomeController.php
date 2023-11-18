@@ -14,6 +14,9 @@ class HomeController
     public function index(): View
     {
         $search = $_GET['search'] ?? '';
+        if(empty($search) && isset($_GET['search'])) {
+            redirect(route());
+        }
 
         $books = (new Book())->getBooksByKey($search);
         $sellingBooks = (new Book())->getBooksByCondition('qty_buy', 'DESC');
@@ -24,9 +27,10 @@ class HomeController
     }
 
     public function books() {
-        $booksByCategory = (new Category())->getAllProductByCategory();
+        $publish_id = $_GET['publish_id'] ?? null;
+        $booksByCategory = (new Category())->getAllProductByCategory($publish_id);
         $publish = (new Publish())->getAll();
-//        print_pre($booksByCategory);die();
+
         return View::make('category_books', ['booksByCategory' => $booksByCategory, 'publish' => $publish]);
     }
 }

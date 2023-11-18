@@ -67,7 +67,7 @@ class Order extends Model
         $query_d = "SELECT all_months.month AS y,
                            CAST(COALESCE(SUM(total_price), 0) AS UNSIGNED) AS a
                     FROM all_months
-                    LEFT JOIN {$this->table} ON MONTH(booking_date) = all_months.month AND YEAR(booking_date) = :year
+                    LEFT JOIN {$this->table} ON MONTH(booking_date) = all_months.month AND YEAR(booking_date) = :year AND status = 3
                     GROUP BY all_months.month";
 
         $query = $this->db->prepare($query_d);

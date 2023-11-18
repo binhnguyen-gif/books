@@ -19,7 +19,7 @@ require_once 'Sliderbar.php'; ?>
                     <div class="contact-form">
                         <h2 class="title text-center">Gửi Phản Hồi</h2>
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form id="main-contact-form" action="" class="contact-form row" name="contact-form"
+                        <form id="main-contact-form" action="<?php echo customRoute('contact/store'); ?>" class="contact-form row" name="contact-form"
                               method="POST">
                             <div class="form-group col-md-6">
                                 <input type="text" name="name" class="form-control" required="required"
@@ -30,15 +30,15 @@ require_once 'Sliderbar.php'; ?>
                                        placeholder="Email">
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="text" name="subject" class="form-control" required="required"
+                                <input type="text" name="title" class="form-control" required="required"
                                        placeholder="Tiêu đề">
                             </div>
                             <div class="form-group col-md-12">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8"
+                                <textarea name="content" id="message" required="required" class="form-control" rows="8"
                                           placeholder="Nội dung"></textarea>
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Gửi đi">
+                                <input type="submit" name="submitContact" class="btn btn-primary pull-right" value="Gửi đi">
                             </div>
                         </form>
                     </div>

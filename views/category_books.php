@@ -16,7 +16,7 @@ require_once 'Sliderbar.php';
                                     <?php
                                     $publish = isset($publish) ? $publish : [];
                                     foreach ($publish as $value) { ?>
-                                        <li><a href="#"><span class="pull-right"></span><?php
+                                        <li><a href="<?php echo customRoute('books?publish_id=') . $value['id']; ?>"><span class="pull-right"></span><?php
                                                 echo $value['name']; ?></a></li>
                                         <?php
                                     } ?>
@@ -34,6 +34,7 @@ require_once 'Sliderbar.php';
                     <?php
                     foreach ($booksByCategory as $category) { ?>
                         <div class="features_items"><!--features_items-->
+                            <?php if (!empty($category['books'])) { ?>
                             <div class="three">
                                 <h2><?php
                                     echo $category['name']; ?></h2>
@@ -41,7 +42,6 @@ require_once 'Sliderbar.php';
 
                             <!--  lấy sản phẩm -->
                             <?php
-                            if (!empty($category['books'])) {
                                 foreach (json_decode($category['books']) as $book) { ?>
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">

@@ -720,6 +720,10 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
+.market-update-block.clr-block-2, .market-update-block.clr-block-4
+{
+    min-height: 190px;
+}
 .market-update-block.clr-block-4 {
     background:#2a2727;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
