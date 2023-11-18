@@ -8,22 +8,22 @@ require_once 'common/aside.php';
         <div class="row">
             <form action="<?php echo customRoute('admin'); ?>" autocomplete="off" method="GET">
                 <div class="col-md-2">
-                    <p>Từ ngày: <input type="date" class="form-control" name="date1" value="<?php
-                        echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>"></p><br>
+<!--                    <p>Từ ngày: <input type="date" class="form-control" name="date1" value="--><?php
+//                        echo isset($_POST['date1']) ? $_POST['date1'] : '' ?><!--"></p><br>-->
                 </div>
                 <div class="col-md-2">
-                    <p>Đến ngày: <input type="date" class="form-control" name="date2" value="<?php
-                        echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>"></p>
+<!--                    <p>Đến ngày: <input type="date" class="form-control" name="date2" value="--><?php
+//                        echo isset($_POST['date2']) ? $_POST['date2'] : '' ?><!--"></p>-->
                 </div>
                 <br>
-                <button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span>
+<!--                <button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span>-->
                 </button>
-                <a href="<?php echo customRoute('admin') ;?>" type="button" class="btn btn-success"><span
+                <a href="<?php echo customRoute('admin') ;?>" type="button" class="btn btn-success" style="margin-left: 32px;"><span
                             class="glyphicon glyphicon-refresh"><span></a>
             </form>
         </div>
 
-        <div class="market-updates">
+        <div class="market-updates" style="min-height: 210px;">
             <div class="col-md-3 market-update-gd">
                 <div class="market-update-block clr-block-2">
                     <a href="<?php echo customRoute('admin/list-book') ;?>">

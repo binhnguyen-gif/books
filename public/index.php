@@ -18,6 +18,7 @@ use App\Controllers\Admin\CategoryController as AdminCategory;
 use App\Controllers\Admin\PublishController as AdminPublish;
 use App\Controllers\Admin\CustomerController as AdminCustomer;
 use App\Controllers\Admin\OrderController as AdminOrder;
+use App\Controllers\Admin\ContactController as AdminContact;
 use App\Router;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -39,7 +40,7 @@ $router
     ->get('/logout', [LoginController::class, 'logout'])
     ->get('/books', [HomeController::class, 'books'])
     ->get('/contact', [ContactController::class, 'index'])
-    ->post('/contact/store', [ContactController::class, 'store'])
+    ->post('/delete-book', [CartController::class, 'delete'])
     ->get('/detail', [BookController::class, 'detail'])
     ->get('/cart', [CartController::class, 'index'])
     ->post('/cart', [CartController::class, 'addCart'])
@@ -74,6 +75,8 @@ $router
     ->get('/admin/customer/show', [AdminCustomer::class, 'show'])
     ->post('/admin/customer/update', [AdminCustomer::class, 'update'])
     ->get('/admin/customer/delete', [AdminCustomer::class, 'delete'])
+    ->get('/admin/list-contact', [AdminContact::class, 'index'])
+    ->get('/admin/contact/delete', [AdminContact::class, 'delete'])
     ->get('/admin/list-order', [AdminOrder::class, 'list'])
     ->post('/admin/order/status', [AdminOrder::class, 'status'])
     ->get('/admin/order/show', [AdminOrder::class, 'show']);

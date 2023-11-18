@@ -19,7 +19,7 @@ require_once 'Sliderbar.php'; ?>
                     <div class="contact-form">
                         <h2 class="title text-center">Gửi Phản Hồi</h2>
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form id="main-contact-form" action="<?php echo customRoute('contact/store'); ?>" class="contact-form row" name="contact-form"
+                        <form id="main-contact-form" action="<?php echo customRoute('contact'); ?>" class="contact-form row" name="contact-form"
                               method="POST">
                             <div class="form-group col-md-6">
                                 <input type="text" name="name" class="form-control" required="required"

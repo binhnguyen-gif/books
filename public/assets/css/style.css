@@ -720,9 +720,9 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
-.market-update-block.clr-block-2, .market-update-block.clr-block-4
+.market-update-block.clr-block-2, .market-update-block.clr-block-4, .market-update-block.clr-block-1, .market-update-block.clr-block-3
 {
-    min-height: 190px;
+    min-height: 190px !important;
 }
 .market-update-block.clr-block-4 {
     background:#2a2727;

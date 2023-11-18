@@ -23,6 +23,16 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
+                        <i class="fa fa-compress"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-contact">Quản lý liên hệ</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
                         <i class="fa fa-users"></i>
                         <span>Khách hàng</span>
                     </a>

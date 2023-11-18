@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Helpers\CustomSession;
 use App\View;
-use App\Models\Cantact;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -17,13 +18,12 @@ class ContactController extends Controller
         if(checkMethod('POST') && isset($_POST['submitContact'])) {
             $newContact = $this->extracted();
             try {
-                // print_pre($newContact);die();
                 $contact = (new Contact())->insert($newContact);
                 if($contact) {
                     CustomSession::put('success', 'Chúng tôi xin nhận ý kiến phản hồi của bạn.');
                 }
                 
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 CustomSession::put('error', 'Xin vui long thử lại sau.');
             }
             
@@ -39,6 +39,7 @@ class ContactController extends Controller
             'email' => $_POST['email'],
             'title' => $_POST['title'],
             'content' => $_POST['content'],
+            'created_at' => date('Y-m-d'),
         ];
     }
 
