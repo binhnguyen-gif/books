@@ -10,7 +10,7 @@ class SendMail
     /**
      * @throws Exception
      */
-    public function send($email, $name, $subject, $html_content)
+    public function send($email, $name, $subject, $html_content): bool
     {
         $mail = new PHPMailer();
         $mail->IsSMTP();

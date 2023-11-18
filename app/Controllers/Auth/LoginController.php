@@ -29,6 +29,7 @@ class LoginController extends Controller
 
     public function logout()
     {
+        session_destroy();
         unset($_SESSION['customer']);
         redirect(route());
     }

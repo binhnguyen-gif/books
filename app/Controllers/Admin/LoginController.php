@@ -33,6 +33,7 @@ class LoginController extends Controller
     public function logout()
     {
         unset($_SESSION['user']);
+        session_destroy();
         return redirect(route());
     }
 }

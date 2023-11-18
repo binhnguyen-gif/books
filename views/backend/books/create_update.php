@@ -39,6 +39,12 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <!-- <img src="https://lukoilonline.com/uploadFiles/default.png" width="20%" id="previewImg" > -->
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên tác giả:</label>
+                                    <input type="text" value="<?php
+                                    echo isset($book['author']) ? $book['author'] : ''; ?>" class="form-control"
+                                           name="author" id="exampleInputEmail1" required placeholder="Tên tác giả">
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
                                     <input type="text" value="<?php
                                     echo isset($book['old_price']) ? $book['old_price'] : ''; ?>" class="form-control"

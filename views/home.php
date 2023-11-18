@@ -1,16 +1,6 @@
 <?php
-
 require_once 'Header.php';
 require_once 'Sliderbar.php';
-?>
-<?php
-$msg = !empty(session('msg')) ? session('msg') : null;
-if (!empty($msg)) {
-    ?>
-<!--    <script>alert('Đặt hàng thành công')</script>-->
-<?php
-}
-//unsession('msg');
 ?>
     <section>
         <div class="container">

@@ -68,7 +68,6 @@ class BookController extends Controller
                 $book = (new Book())->getById($id);
 
                 if (!check_upload('image')) {
-//                    var_dump('vao');die();
                     delete_file($book['image']);
                     $this->updateFile('image');
                 }
@@ -128,7 +127,7 @@ class BookController extends Controller
         return [
             'name' => $_POST['name'],
             'slug' => create_slug($_POST['name']),
-//            'author' => $_POST['title'],
+            'author' => $_POST['author'],
             'old_price' => $_POST['old_price'],
             'price' => $_POST['price'],
             'qty' => $_POST['qty'],

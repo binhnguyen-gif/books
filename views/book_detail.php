@@ -63,7 +63,7 @@ require_once 'Sliderbar.php'; ?>
                                         </fieldset>
                                     </form>
                                     <p><b>Tình trạng:</b> Mới 100 %</p>
-                                    <p><b>Nhà cung cấp :</b>
+                                    <p><b>Nhà xuất bản :</b>
                                         <?php foreach (listCategories() as $category) {
                                             if($book['category_id'] == $category['id']) {?>
                                                 <?php echo $category['name']; ?>
