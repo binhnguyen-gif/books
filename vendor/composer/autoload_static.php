@@ -23,6 +23,7 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
         'P' => 
         array (
             'PhpOption\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'G' => 
         array (
@@ -55,6 +56,10 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
@@ -72,8 +77,14 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
     public static $classMap = array (
         'App\\App' => __DIR__ . '/../..' . '/app/App.php',
         'App\\Config' => __DIR__ . '/../..' . '/app/Config.php',
+        'App\\Controllers\\Admin\\BookController' => __DIR__ . '/../..' . '/app/Controllers/Admin/BookController.php',
+        'App\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Controllers/Admin/CategoryController.php',
+        'App\\Controllers\\Admin\\ContactController' => __DIR__ . '/../..' . '/app/Controllers/Admin/ContactController.php',
+        'App\\Controllers\\Admin\\CustomerController' => __DIR__ . '/../..' . '/app/Controllers/Admin/CustomerController.php',
         'App\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Controllers/Admin/DashboardController.php',
         'App\\Controllers\\Admin\\LoginController' => __DIR__ . '/../..' . '/app/Controllers/Admin/LoginController.php',
+        'App\\Controllers\\Admin\\OrderController' => __DIR__ . '/../..' . '/app/Controllers/Admin/OrderController.php',
+        'App\\Controllers\\Admin\\PublishController' => __DIR__ . '/../..' . '/app/Controllers/Admin/PublishController.php',
         'App\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Controllers/Auth/LoginController.php',
         'App\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Controllers/Auth/RegisterController.php',
         'App\\Controllers\\BookController' => __DIR__ . '/../..' . '/app/Controllers/BookController.php',
@@ -86,17 +97,20 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
         'App\\DB' => __DIR__ . '/../..' . '/app/DB.php',
         'App\\Exceptions\\RouteNotFoundException' => __DIR__ . '/../..' . '/app/Exceptions/RouteNotFoundException.php',
         'App\\Exceptions\\ViewNotFoundException' => __DIR__ . '/../..' . '/app/Exceptions/ViewNotFoundException.php',
+        'App\\Helpers\\CustomSession' => __DIR__ . '/../..' . '/app/Helpers/CustomSession.php',
         'App\\Helpers\\SessionFlash' => __DIR__ . '/../..' . '/app/Helpers/SessionFlash.php',
         'App\\Model' => __DIR__ . '/../..' . '/app/Model.php',
         'App\\Models\\Book' => __DIR__ . '/../..' . '/app/Models/Book.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\OrderDetail' => __DIR__ . '/../..' . '/app/Models/OrderDetail.php',
         'App\\Models\\Publish' => __DIR__ . '/../..' . '/app/Models/Publish.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Router' => __DIR__ . '/../..' . '/app/Router.php',
+        'App\\Utilities\\VNPay' => __DIR__ . '/../..' . '/app/Utilities/VNPay.php',
         'App\\View' => __DIR__ . '/../..' . '/app/View.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -144,6 +158,13 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
+        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PhpOption\\LazyOption' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/LazyOption.php',
         'PhpOption\\None' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/None.php',
         'PhpOption\\Option' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Option.php',

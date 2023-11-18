@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Controllers\Auth;
 use App\Controllers\Controller;
 use App\Models\Customer;
+use App\Service\SendMail;
 
 class RegisterController extends Controller
 {
@@ -19,6 +20,8 @@ class RegisterController extends Controller
 
         $user = new Customer();
         $credentials = $user->create($info);
+        $yourmail = new SendMail();
+        $yourmail->send("info@destination.com", "Destination Name", "Mail Subject", "<p>HTML Content</p>");
         if (!empty($credentials)) {
             unset($credentials['password']);
             $_SESSION['customer'] = $credentials;
