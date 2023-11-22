@@ -61,10 +61,34 @@ class CartController extends Controller
 
     }
 
+    public function updateCart() {
+        // print_pre($_POST['cart']);die();
+        $cart = $_POST['cart'] ?? [];
+        $bookQuantities = array_reduce($cart, function ($carry, $item) {
+        foreach ($item as $bookId => $quantity) {
+            $carry[$bookId] = isset($carry[$bookId]) ? $carry[$bookId] + $quantity : $quantity;
+        }
+            return $carry;
+         }, []);
+
+print_pre($bookQuantities);die();
+$test = [];
+        foreach($bookQuantities as $key => $value) {
+            // var_dump($key);die();
+            // echo "key: " . $key . ' value: '. $value;
+            $book = (new Book())->getById($key);
+            // $test[] = var_dump($book);;
+            $test[] = ['quantity' => $value, 'total' => $value * $book['price']];
+            (new Cart())->update($key, ['quantity' => $value, 'total' => $value * $book['price']]);
+        }
+        print_pre($book);die();
+        // back();
+    }
+
     public function delete()
     {
         try {
-            $book_id = $_POST['book_id'] ?? null;
+            $book_id = $_GET['book_id'] ?? null;
             $customer_id = $_SESSION['customer']['id'] ?? null;
             $cart = (new Cart())->getCart($book_id, $customer_id);
 

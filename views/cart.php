@@ -27,7 +27,7 @@ require_once 'Sliderbar.php'; ?>
                     </tr>
                     </thead>
                     <tbody>
-
+                    <form action="<?php echo route() ;?>update-cart" method="POST" id="updateCartForm">
                     <?php if(!empty($books)) {
                         $total_price = 0;
                     foreach ($books as $index => $book) {
@@ -46,22 +46,21 @@ require_once 'Sliderbar.php'; ?>
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <input class="cart_quantity_input" type="number" min="1" name="soluong[]" value="<?php echo $book['quantity']; ?>"  >
+                                
+                                    <input class="cart_quantity_input" type="number" min="1" name="cart[<?php echo $index; ?>][<?php echo $book['id']; ?>]" value="<?php echo $book['quantity']; ?>"  >
+                                    
                                 </div>
-                                <input type="hidden"  name="product_id[]" value="<?php echo $book['id']; ?>"  >
+                                <!-- <input type="hidden"  name="product_id[]" value="<?php echo $book['id']; ?>"  > -->
                             </td>
                             <td class="cart_total">
                                 <p class="cart_total_price"><?php echo number_format($book['total']); ?>đ</p>
                             </td>
                             <td class="cart_delete">
-                                <form action="<?php echo route() ;?>delete-book" method="POST">
-                                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                                    <button type="submit" class="cart_quantity_delete"><i style="color: red" class="fa fa-trash-o " ></i></button>
-                                </form>
+                                    <a onclick="customConfirm('<?php echo customRoute('delete-book?book_id=') . $book['id'];?>', 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')" class="cart_quantity_delete"><i style="color: red" class="fa fa-trash-o " ></i></a>
                             </td>
                         </tr>
                     <?php } ?>
-
+                    </form>
                     <tr style="text-align:center">
                         <td> </td>
                         <td colspan="7">
@@ -76,7 +75,7 @@ require_once 'Sliderbar.php'; ?>
                                 </ul>
                                 <!-- <a class="btn btn-default check_out" href="">Thanh Toán</a> -->
                             </div>
-                            <input style="color: #fff;" type="submit" value=" Cập nhật giỏ hàng " class="btn btn-primary add-to-cart" name="updateCart"  >
+                            <a style="color: #fff;" onclick="updateCart();" class="btn btn-primary add-to-cart" name="updateCart">Cập nhật giỏ hàng </a>
                         </td>
                     </tr>
                     <?php }else {?>

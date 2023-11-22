@@ -17,6 +17,23 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="<?php echo route(); ?>assets/images/ico/apple-touch-icon-57-precomposed.png">
+    <script>
+        function customConfirm(route, message)
+        {
+            if(confirm(message))
+            {
+                 window.location.href= route;
+                 // document.getElementById(id).submit();
+            }
+        }
+
+        function updateCart()
+        {
+            document.getElementById("updateCartForm").submit();
+        }
+    
+
+    </script>
 </head>
 <body>
 <header id="header">
