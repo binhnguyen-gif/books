@@ -17,6 +17,7 @@ use App\Controllers\Admin\BookController as AdminBook;
 use App\Controllers\Admin\CategoryController as AdminCategory;
 use App\Controllers\Admin\PublishController as AdminPublish;
 use App\Controllers\Admin\CustomerController as AdminCustomer;
+use App\Controllers\Admin\StaffController as AdminStaff;
 use App\Controllers\Admin\OrderController as AdminOrder;
 use App\Controllers\Admin\ContactController as AdminContact;
 use App\Router;
@@ -40,6 +41,7 @@ $router
     ->get('/logout', [LoginController::class, 'logout'])
     ->get('/books', [HomeController::class, 'books'])
     ->get('/contact', [ContactController::class, 'index'])
+    ->post('/contact', [ContactController::class, 'store'])
     ->get('/delete-book', [CartController::class, 'delete'])
     ->get('/detail', [BookController::class, 'detail'])
     ->get('/cart', [CartController::class, 'index'])
@@ -76,8 +78,7 @@ $router
     ->get('/admin/customer/show', [AdminCustomer::class, 'show'])
     ->post('/admin/customer/update', [AdminCustomer::class, 'update'])
     ->get('/admin/customer/delete', [AdminCustomer::class, 'delete'])
-
-    ->get('admin/list-staff', [AdminCustomer::class, 'list'])
+    ->get('/admin/list-staff', [AdminStaff::class, 'list'])
     ->get('/admin/staff/create', [AdminStaff::class, 'create'])
     ->post('/admin/staff/create', [AdminStaff::class, 'store'])
     ->get('/admin/staff/show', [AdminStaff::class, 'show'])

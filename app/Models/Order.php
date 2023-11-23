@@ -31,6 +31,14 @@ class Order extends Model
     {
         return $this->insertAndGet($order);
     }
+    // ORDER BY booking_date DESC
+
+    public function getAll(): array
+    {
+        $query = $this->db->query("SELECT * FROM {$this->tableName} ORDER BY booking_date DESC");
+
+        return $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     public function sum($status = null): array
     {

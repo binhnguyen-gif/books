@@ -25,6 +25,14 @@ class Customer extends Model
         return $this->insertAndGet($info);
     }
 
+    public function getCustomerByEmail(string $email): ?array
+    {
+        $query = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE email = :email LIMIT 1");
+        $query->execute(['email' => $email]);
+
+        return $query->fetch(\PDO::FETCH_ASSOC);
+    }
+
     protected function getTableName(): string
     {
         return $this->table;

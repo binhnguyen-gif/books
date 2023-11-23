@@ -50,7 +50,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                 </td>
                                 <td>
                                     <span style="font-size: 17px;"><?php
-                                        echo $order['booking_date']; ?></span>
+                                        echo date('Y-m-d', strtotime($order['booking_date'])); ?></span>
                                 </td>
                                 <td>
                                     <span style="font-size: 17px;">

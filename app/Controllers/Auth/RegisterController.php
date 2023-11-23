@@ -16,7 +16,12 @@ class RegisterController extends Controller
         $info['password'] = md5($_POST['password']);
         $info['phone'] = $_POST['phone'];
         $info['address'] = $_POST['address'];
-//        $info['role'] = 0;
+
+        if(uniqueEmailCustomer($info['email'])) {
+            CustomSession::put('warning', 'Email này đã được đăng ký vui long sử dùng email khác');
+            redirect(route());
+            return false;
+        }
 
         $user = new Customer();
         $credentials = $user->create($info);

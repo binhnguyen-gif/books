@@ -45,7 +45,7 @@ include(__DIR__.'/../common/aside.php'); ?>
                                     <td><span style="font-size: 17px;"><?php
                                             echo $value['content']; ?></span></td>
                                     <td><span style="font-size: 17px;"><?php
-                                            echo $value['created_at']; ?></span></td>
+                                            echo date('Y-m-d', strtotime($value['created_at'])); ?></span></td>
                                         <?php $routeDelete = customRoute('admin/contact/delete?contact_id=') . $value['id'] ?>
                                     <td>
                                         <a href="javascript:customConfirm('<?php echo $routeDelete; ?>', 'Bạn có chắc muốn xóa liên hệ này không?')"

@@ -25,7 +25,6 @@ class DashboardController
 
 //        $totalIncome = (new Order())->sum(['status' => Order::DELIVERED])['total'];
         $totalIncome = json_encode((new Order())->temporary());
-//        var_dump($totalIncome);die();
 
 
         return View::make('backend/admin',

@@ -89,7 +89,6 @@ require_once 'Sliderbar.php'; ?>
 </section>
 <!--/#cart_items-->
 <?php $user = customer();
-//var_dump($user);die();
 ?>
 <section id="do_action">
     <div class="container">

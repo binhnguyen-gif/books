@@ -4,6 +4,8 @@ use App\Helpers\SessionFlash;
 use App\Helpers\CustomSession;
 use App\View;
 use App\Models\Order;
+use App\Models\User;
+use App\Models\Customer;
 
 if (!function_exists('customRoute')) {
     function customRoute($param): string
@@ -152,7 +154,6 @@ if (!function_exists('customToaster')) {
     {
         if (has($key)) {
             $value = get($key);
-//            var_dump('test: '.$value);
             echo "showToast('{$key}', '{$value}')";
             forget($key);
         }
@@ -240,6 +241,30 @@ if (!function_exists('book_status')) {
     function book_status()
     {
         return \App\Models\Book::STATUS;
+    }
+}
+
+if (!function_exists('uniqueEmail')) {
+    function uniqueEmail($email)
+    {
+        $user = (new User())->getUserByEmail($email);
+        if(!empty($user)) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('uniqueEmailCustomer')) {
+    function uniqueEmailCustomer($email)
+    {
+        $user = (new Customer())->getCustomerByEmail($email);
+        if(!empty($user)) {
+            return true;
+        }
+
+        return false;
     }
 }
 
