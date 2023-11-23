@@ -76,6 +76,13 @@ $router
     ->get('/admin/customer/show', [AdminCustomer::class, 'show'])
     ->post('/admin/customer/update', [AdminCustomer::class, 'update'])
     ->get('/admin/customer/delete', [AdminCustomer::class, 'delete'])
+
+    ->get('admin/list-staff', [AdminCustomer::class, 'list'])
+    ->get('/admin/staff/create', [AdminStaff::class, 'create'])
+    ->post('/admin/staff/create', [AdminStaff::class, 'store'])
+    ->get('/admin/staff/show', [AdminStaff::class, 'show'])
+    ->post('/admin/staff/update', [AdminStaff::class, 'update'])
+    ->get('/admin/staff/delete', [AdminStaff::class, 'delete'])
     ->get('/admin/list-contact', [AdminContact::class, 'index'])
     ->get('/admin/contact/delete', [AdminContact::class, 'delete'])
     ->get('/admin/list-order', [AdminOrder::class, 'list'])

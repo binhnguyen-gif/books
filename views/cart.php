@@ -27,40 +27,38 @@ require_once 'Sliderbar.php'; ?>
                     </tr>
                     </thead>
                     <tbody>
-                    <form action="<?php echo route() ;?>update-cart" method="POST" id="updateCartForm">
-                    <?php if(!empty($books)) {
-                        $total_price = 0;
-                    foreach ($books as $index => $book) {
-                        $total_price += $book['price'];
-                        ?>
-                        <tr>
-                            <td class="invert" style="text-align: center;"> <?php echo $index; ?></td>
-                            <td class="cart_product">
-                                <img src="<?php echo route(); ?>assets/images/product/<?php echo $book['image'] ?>" style ="width: 36px;margin-left: -24px;"alt="">
-                            </td>
-                            <td class="cart_description">
-                                <h4><?php echo $book['name']; ?></h4>
-                            </td>
-                            <td class="cart_price">
-                                <p><?php echo number_format($book['price'])."đ"; ?></p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                
-                                    <input class="cart_quantity_input" type="number" min="1" name="cart[<?php echo $index; ?>][<?php echo $book['id']; ?>]" value="<?php echo $book['quantity']; ?>"  >
+                        <?php if(!empty($books)) {
+                            $total_price = 0;
+                        foreach ($books as $index => $book) {
+                            $total_price += $book['price'];
+                            ?>
+                            <tr>
+                                <td class="invert" style="text-align: center;"> <?php echo $index; ?></td>
+                                <td class="cart_product">
+                                    <img src="<?php echo route(); ?>assets/images/product/<?php echo $book['image'] ?>" style ="width: 36px;margin-left: -24px;"alt="">
+                                </td>
+                                <td class="cart_description">
+                                    <h4><?php echo $book['name']; ?></h4>
+                                </td>
+                                <td class="cart_price">
+                                    <p><?php echo number_format($book['price'])."đ"; ?></p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
                                     
-                                </div>
-                                <!-- <input type="hidden"  name="product_id[]" value="<?php echo $book['id']; ?>"  > -->
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price"><?php echo number_format($book['total']); ?>đ</p>
-                            </td>
-                            <td class="cart_delete">
-                                    <a onclick="customConfirm('<?php echo customRoute('delete-book?book_id=') . $book['id'];?>', 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')" class="cart_quantity_delete"><i style="color: red" class="fa fa-trash-o " ></i></a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    </form>
+                                        <input class="cart_quantity_input" type="number" min="1" name="cart[<?php echo $index; ?>][<?php echo $book['id']; ?>]" value="<?php echo $book['quantity']; ?>"  >
+                                        
+                                    </div>
+                                    <!-- <input type="hidden"  name="product_id[]" value="<?php echo $book['id']; ?>"  > -->
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price"><?php echo number_format($book['total']); ?>đ</p>
+                                </td>
+                                <td class="cart_delete">
+                                        <a onclick="customConfirm('<?php echo customRoute('delete-book?book_id=') . $book['id'];?>', 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')" class="cart_quantity_delete"><i style="color: red" class="fa fa-trash-o " ></i></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     <tr style="text-align:center">
                         <td> </td>
                         <td colspan="7">

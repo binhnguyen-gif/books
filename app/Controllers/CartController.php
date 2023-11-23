@@ -71,8 +71,8 @@ class CartController extends Controller
             return $carry;
          }, []);
 
-print_pre($bookQuantities);die();
-$test = [];
+        print_pre($bookQuantities);die();
+        $test = [];
         foreach($bookQuantities as $key => $value) {
             // var_dump($key);die();
             // echo "key: " . $key . ' value: '. $value;

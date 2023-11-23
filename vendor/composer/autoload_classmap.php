@@ -41,6 +41,7 @@ return array(
     'App\\Models\\Publish' => $baseDir . '/app/Models/Publish.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Router' => $baseDir . '/app/Router.php',
+    'App\\Service\\SendMail' => $baseDir . '/app/Service/SendMail.php',
     'App\\Utilities\\VNPay' => $baseDir . '/app/Utilities/VNPay.php',
     'App\\View' => $baseDir . '/app/View.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

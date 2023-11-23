@@ -71,6 +71,16 @@
                             echo route(); ?>admin/list-book">Quản lý sách</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-users"></i>
+                        <span>Nhân viên</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="<?php
+                            echo route(); ?>admin/list-staff">Quản lý nhân viên</a></li>
+                    </ul>
+                </li>
                 <!--                <li class="sub-menu">-->
                 <!--                    <a href="javascript:;">-->
                 <!--                        <i class="fa fa-newspaper-o"></i>-->

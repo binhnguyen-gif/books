@@ -110,6 +110,7 @@ class ComposerStaticInitbdbd851d4f64dab19ce07be67eaa5d89
         'App\\Models\\Publish' => __DIR__ . '/../..' . '/app/Models/Publish.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Router' => __DIR__ . '/../..' . '/app/Router.php',
+        'App\\Service\\SendMail' => __DIR__ . '/../..' . '/app/Service/SendMail.php',
         'App\\Utilities\\VNPay' => __DIR__ . '/../..' . '/app/Utilities/VNPay.php',
         'App\\View' => __DIR__ . '/../..' . '/app/View.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

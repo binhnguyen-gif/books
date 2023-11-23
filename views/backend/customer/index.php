@@ -8,7 +8,7 @@
                     Quản lý khách hàng
                 </div>
                 <div class="row">
-                    <form autocomplete="off" method="POST">
+                    <!-- <form autocomplete="off" method="POST">
                         <div class="col-md-2">
                             <p>Từ ngày: <input type="date" class="form-control" name="date1" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>"> </p><br>
                         </div>
@@ -16,7 +16,7 @@
                             <p>Đến ngày: <input type="date" class="form-control" name="date2" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>"> </p>
                         </div><br>
                         <button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span></button><a href="<?php echo route(); ?>admin/list-customer" type="button" class="btn btn-success"><span class = "glyphicon glyphicon-refresh"><span></a>
-                    </form>
+                    </form> -->
 
                 </div>
                 <div class="table-responsive">
