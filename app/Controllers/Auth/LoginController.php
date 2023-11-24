@@ -11,11 +11,11 @@ class LoginController extends Controller
 {
     public function login()
     {
-        $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = md5($_POST['password']);
 
         $user = new Customer();
-        $credentials = $user->login($username, $password);
+        $credentials = $user->login($email, $password);
         if (!empty($credentials)) {
             unset($credentials['password']);
             $_SESSION['customer'] = $credentials;

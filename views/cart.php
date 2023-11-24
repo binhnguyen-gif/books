@@ -11,9 +11,8 @@ require_once 'Sliderbar.php'; ?>
             </ol>
         </div>
         <div class="table-responsive cart_info">
-<!--            <form action="" method="POST">-->
+            <form action="<?php echo customRoute('update-cart'); ?>" method="POST" id="updateCartForm">
                 <table class="table table-condensed">
-
                     <thead>
                     <tr class="cart_menu">
                         <td class="invert">Thứ tự </td>
@@ -49,7 +48,7 @@ require_once 'Sliderbar.php'; ?>
                                         <input class="cart_quantity_input" type="number" min="1" name="cart[<?php echo $index; ?>][<?php echo $book['id']; ?>]" value="<?php echo $book['quantity']; ?>"  >
                                         
                                     </div>
-                                    <!-- <input type="hidden"  name="product_id[]" value="<?php echo $book['id']; ?>"  > -->
+                                     <input type="hidden"  name="" value="<?php echo $book['id']; ?>"  >
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price"><?php echo number_format($book['total']); ?>đ</p>
@@ -73,7 +72,7 @@ require_once 'Sliderbar.php'; ?>
                                 </ul>
                                 <!-- <a class="btn btn-default check_out" href="">Thanh Toán</a> -->
                             </div>
-                            <a style="color: #fff;" onclick="updateCart();" class="btn btn-primary add-to-cart" name="updateCart">Cập nhật giỏ hàng </a>
+                            <button style="color: #fff;" onclick="updateCart();" class="btn btn-primary add-to-cart" name="updateCart">Cập nhật giỏ hàng </button>
                         </td>
                     </tr>
                     <?php }else {?>
@@ -83,7 +82,7 @@ require_once 'Sliderbar.php'; ?>
                     <?php } ?>
                     </tbody>
                 </table>
-<!--            </form>-->
+            </form>
         </div>
     </div>
 </section>
@@ -96,7 +95,7 @@ require_once 'Sliderbar.php'; ?>
                 <div class="col-sm-6">
                     <div class="chose_area">
                         <h4 class="mb-sm-4 mb-3" style="text-align: center;font-size: 24px;color: aqua;text-transform: uppercase;">Thêm địa chỉ giao hàng</h4>
-                        <form action="<?php echo route(); ?>order" method="POST" class="creditly-card-form agileinfo_form">
+                        <form action="<?php echo route(); ?>order" method="POST" class="creditly-card-form agileinfo_form" id="checkout">
                             <div class="creditly-wrapper wthree, w3_agileits_wrapper">
                                 <div class="information-wrapper">
                                     <div class="first-row">
@@ -123,7 +122,7 @@ require_once 'Sliderbar.php'; ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="submit" name="order" class="btn btn-default check_out" style="width: 20%" value="Thanh toán">
+                                    <button onclick="checkout();" name="order" class="btn btn-default check_out" style="width: 20%">Thanh toán</button>
                                     <a class="btn btn-default update" href="<?php echo route(); ?>">Quay lại trang chủ</a>
                                 </div>
                             </div>

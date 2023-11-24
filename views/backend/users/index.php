@@ -9,7 +9,9 @@
                 </div>
                 <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
+                        <?php if($_SESSION['user']['role'] == 1) { ?>
                         <a href="<?php echo route(); ?>admin/staff/create" class="btn btn-primary ">Thêm nhân viên</a>
+                        <?php }?>
                     </div>
                     <div class="col-sm-4">
                     </div>

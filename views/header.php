@@ -31,6 +31,11 @@
         {
             document.getElementById("updateCartForm").submit();
         }
+
+        function checkout()
+        {
+            document.getElementById("checkout").submit();
+        }
     
 
     </script>
@@ -161,8 +166,8 @@
 				<div class="modal-body">
 					<form action="<?php echo route(); ?>login" method="POST">
 						<div class="form-group">
-							<label class="col-form-label">Tên đăng nhập</label>
-							<input type="text" class="form-control" placeholder="điền email " name="username" required="">
+							<label class="col-form-label">Địa chỉ email</label>
+							<input type="email" class="form-control" placeholder="Địa chỉ email" name="email" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Mật khẩu</label>

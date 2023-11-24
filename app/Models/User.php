@@ -8,11 +8,11 @@ class User extends Model
 {
     protected $table = 'users';
 
-    public function login($username, $password)
+    public function login($email, $password)
     {
-        $query = "SELECT * FROM {$this->table} WHERE username = :username AND password = :password LIMIT 1";
+        $query = "SELECT * FROM {$this->table} WHERE email = :email AND password = :password LIMIT 1";
 
-        return $this->getData($query, ['username' => $username, 'password' => $password]);
+        return $this->getData($query, ['email' => $email, 'password' => $password]);
     }
 
     public function register($info)

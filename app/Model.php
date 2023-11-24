@@ -16,7 +16,7 @@ abstract class Model
         $this->tableName = $this->getTableName();
     }
 
-    public function getById(int $id): ?array
+    public function getById(int $id)
     {
         $query = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE id = :id");
         $query->execute(['id' => $id]);

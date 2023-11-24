@@ -67,7 +67,7 @@ class BookController extends Controller
                 $id = $_POST['book_id'];
                 $book = (new Book())->getById($id);
 
-                if (!check_upload('image')) {
+                if (!check_upload('image') && !empty($_FILES["image"]["name"])) {
                     delete_file($book['image']);
                     $this->updateFile('image');
                 }

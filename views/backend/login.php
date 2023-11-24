@@ -27,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="w3layouts-main">
         <h2>Đăng nhập</h2>
         <form action="<?php echo route();?>admin/show-login" method="POST">
-            <input type="text" class="ggg" name=username placeholder="Tên tài khoản" required="">
+            <input type="text" class="ggg" name=email placeholder="Địa chỉ email" required="">
             <input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
             <span><input type="checkbox" />Nhớ tài khoản</span>
             <h6><a href="#">Quên mật khẩu?</a></h6>

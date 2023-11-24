@@ -189,7 +189,7 @@ if (!function_exists('checkAdmin')) {
 }
 
 if (!function_exists('userId')) {
-    function userId(): bool
+    function userId(): ?int
     {
         return isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
     }

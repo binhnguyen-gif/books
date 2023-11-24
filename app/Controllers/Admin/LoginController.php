@@ -12,11 +12,11 @@ class LoginController extends Controller
     public function login()
     {
         if (checkMethod('POST') && isset($_POST['login'])) {
-            $username = $_POST['username'];
+            $email = $_POST['email'];
             $password = md5($_POST['password']);
 
             $user = new User();
-            $credentials = $user->login($username, $password);
+            $credentials = $user->login($email, $password);
 
             if (!empty($credentials)) {
                 unset($credentials['password']);

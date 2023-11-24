@@ -8,11 +8,11 @@ class Customer extends Model
 {
     protected string $table = 'customers';
 
-    public function login($username, $password): array
+    public function login($email, $password): array
     {
-        $query = "SELECT * FROM {$this->table} WHERE username = :username AND password = :password LIMIT 1";
+        $query = "SELECT * FROM {$this->table} WHERE email = :email AND password = :password LIMIT 1";
 
-        return $this->getData($query, ['username' => $username, 'password' => $password]);
+        return $this->getData($query, ['email' => $email, 'password' => $password]);
     }
 
     public function register($info): bool
@@ -25,7 +25,7 @@ class Customer extends Model
         return $this->insertAndGet($info);
     }
 
-    public function getCustomerByEmail(string $email): ?array
+    public function getCustomerByEmail(string $email)
     {
         $query = $this->db->prepare("SELECT * FROM {$this->tableName} WHERE email = :email LIMIT 1");
         $query->execute(['email' => $email]);

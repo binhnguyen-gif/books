@@ -22,7 +22,7 @@ class CartController extends Controller
     {
         $customer_id = $_SESSION['customer']['id'];
         $books = (new Cart())->getCartByCustomer($customer_id);
-
+//var_dump($books);die();
         return View::make('cart', ['books' => $books]);
     }
 
@@ -53,28 +53,38 @@ class CartController extends Controller
                 }
             }
         } catch (\Exception $e) {
-            var_dump('Lỗi: '.$e->getMessage().' Line:'.$e->getLine());die();
+            var_dump('Lỗi: '.$e->getMessage().' Line:'.$e->getLine());
+            die();
             redirect(route());
         }
 
         redirect(route());
-
     }
 
-    public function updateCart() {
+    public function updateCart()
+    {
         $cart = $_POST['cart'] ?? [];
         $bookQuantities = array_reduce($cart, function ($carry, $item) {
-        foreach ($item as $bookId => $quantity) {
-            $carry[$bookId] = isset($carry[$bookId]) ? $carry[$bookId] + $quantity : $quantity;
-        }
+            foreach ($item as $bookId => $quantity) {
+                $carry[$bookId] = isset($carry[$bookId]) ? $carry[$bookId] + $quantity : $quantity;
+            }
             return $carry;
-         }, []);
+        }, []);
 
-        $test = [];
-        foreach($bookQuantities as $key => $value) {
-            $book = (new Book())->getById($key);
-            $test[] = ['quantity' => $value, 'total' => $value * $book['price']];
-            (new Cart())->update($key, ['quantity' => $value, 'total' => $value * $book['price']]);
+        foreach ($bookQuantities as $key => $value) {
+            $book = (new Cart())->getBookByCart($key);
+            if($book['qty'] <= 0 || $value > $book['qty']) {
+                CustomSession::put('warning', 'Số lượng sách không còn đủ trong để thực hiện thêm vào giỏ hàng');
+                back();
+                return;
+            }
+            $total = (int)$value * (int)$book['price'];
+            try {
+                (new Cart())->update($key, ['quantity' => (int)$value, 'total' => $total]);
+            } catch (\Exception $e) {
+                echo "error: ".$e->getMessage();
+                die();
+            }
         }
         back();
     }

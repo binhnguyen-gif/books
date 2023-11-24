@@ -11,7 +11,7 @@ class Cart extends Model
     public function getCartByCustomer($customer_id)
     {
         $data = ['customer_id' => $customer_id];
-        $query = "SELECT * FROM {$this->table} JOIN books ON {$this->table}.book_id = books.id WHERE customer_id = :customer_id";
+        $query = "SELECT {$this->table}.*, books.name, books.price, books.image FROM {$this->table} JOIN books ON {$this->table}.book_id = books.id WHERE customer_id = :customer_id";
 
         return $this->getDataByQuery($query, $data);
     }
@@ -20,6 +20,14 @@ class Cart extends Model
     {
         $data = ['book_id' => $book_id, 'customer_id' => $customer_id];
         $query = "SELECT * FROM {$this->table} WHERE book_id = :book_id AND customer_id = :customer_id";
+
+        return $this->getData($query, $data);
+    }
+
+    public function getBookByCart($cart_id)
+    {
+        $data = ['id' => $cart_id];
+        $query = "SELECT {$this->table}.*, b.price, b.qty FROM {$this->table} JOIN books b ON {$this->table}.book_id = b.id WHERE {$this->table}.id = :id";
 
         return $this->getData($query, $data);
     }
