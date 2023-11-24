@@ -50,7 +50,7 @@ class OrderController extends Controller
         try {
             if (checkMethod('POST') && isset($_POST['updateOrderStatus'])) {
                 $id = $_POST['order_id'];
-                $status = ['status' => $_POST['status'] ?? 0];
+                $status = ['status' => $_POST['status'] ?? 0, 'user_id' => (int)userId()];
                 $upOrder = (new Order())->update($id, $status);
                 if ($upOrder) {
                     CustomSession::put('success', 'Cập nhật trạng thái đơn hàng thành công');

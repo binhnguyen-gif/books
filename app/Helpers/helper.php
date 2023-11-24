@@ -188,6 +188,13 @@ if (!function_exists('checkAdmin')) {
     }
 }
 
+if (!function_exists('userId')) {
+    function userId(): bool
+    {
+        return isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
+    }
+}
+
 if (!function_exists('listCategories')) {
     function listCategories(): array
     {
