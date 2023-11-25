@@ -36,8 +36,11 @@
         {
             document.getElementById("checkout").submit();
         }
-    
 
+        function sortBook()
+        {
+            let sort_by_price = document.getElementById("sort_by_price").val();
+        }
     </script>
 </head>
 <body>

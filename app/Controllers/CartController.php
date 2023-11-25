@@ -39,7 +39,6 @@ class CartController extends Controller
                 if (!empty($cart)) {
                     $quantity = $cart['quantity'] + 1;
                     (new Cart())->update($cart['id'], ['quantity' => $quantity, 'total' => $quantity * $book['price']]);
-                    CustomSession::put('info', 'Đã thêm sản phẩm vào giỏ hàng');
                 } else {
                     $cart = [
                         'book_id' => $book['id'],
@@ -49,8 +48,8 @@ class CartController extends Controller
                     ];
 
                     $upCart = (new Cart())->insert($cart);
-                    CustomSession::put('info', 'Đã thêm sản phẩm vào giỏ hàng');
                 }
+                CustomSession::put('info', 'Đã thêm sản phẩm vào giỏ hàng');
             }
         } catch (\Exception $e) {
             var_dump('Lỗi: '.$e->getMessage().' Line:'.$e->getLine());

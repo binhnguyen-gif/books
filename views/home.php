@@ -41,7 +41,9 @@ require_once 'Sliderbar.php';
                             <h2 style="margin-top:20px;">SẢN PHẨM BÁN CHẠY</h2>
                             <div class="box-scroll">
                                 <div class="scroll">
-                                    <?php foreach ($sellingBooks as $book) {?>
+                                    <?php
+                                    $sellingBooks = $sellingBooks ?? [];
+                                    foreach ($sellingBooks as $book) {?>
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-2 col-3 left-mar" style="margin-bottom: 20px;">
                                             <img src="<?php echo route(); ?>assets/images/product/<?php echo $book['image']; ?>" alt="" class="img-fluid" style=" max-width: 100%;height: auto;">
@@ -71,11 +73,13 @@ require_once 'Sliderbar.php';
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center rise-text"> Sản Phẩm Mới</h2>
                         <div style="width: 19%;float: right;margin-top: -33px;margin-right: 15px;">
-                            <select onchange="">
-                                <option value="">----sắp xếp theo giá----</option>
-                                <option value="">>--từ thấp tới cao--<</option>
-                                <option value="">>--từ cao về thấp--<</option>
-                            </select>
+                            <label>
+                                <select onchange="sortBook();" name="sort_by_price" id="sort_by_price">
+                                    <option>Sắp xếp theo giá</option>
+                                    <option value="price-DESC">Từ thấp tới cao</option>
+                                    <option value="price-ASC">Từ cao về thấp</option>
+                                </select>
+                            </label>
                         </div>
                         <?php
                         if (!empty($books)) {
