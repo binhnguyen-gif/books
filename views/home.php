@@ -69,15 +69,14 @@ require_once 'Sliderbar.php';
                 </div>
 
                 <div class="col-sm-9 padding-right">
-
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center rise-text"> Sản Phẩm Mới</h2>
                         <div style="width: 19%;float: right;margin-top: -33px;margin-right: 15px;">
                             <label>
                                 <select onchange="sortBook();" name="sort_by_price" id="sort_by_price">
                                     <option>Sắp xếp theo giá</option>
-                                    <option value="price-DESC">Từ thấp tới cao</option>
-                                    <option value="price-ASC">Từ cao về thấp</option>
+                                    <option value="DESC">Từ thấp tới cao</option>
+                                    <option value="ASC">Từ cao về thấp</option>
                                 </select>
                             </label>
                         </div>

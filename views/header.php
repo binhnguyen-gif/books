@@ -37,9 +37,14 @@
             document.getElementById("checkout").submit();
         }
 
+
         function sortBook()
         {
-            let sort_by_price = document.getElementById("sort_by_price").val();
+            let sort_by_price = document.getElementById("sort_by_price").value;
+
+            let newUrl = "<?php echo route(); ?>?sort_by_price=" + sort_by_price;
+
+            window.location.href = newUrl;
         }
     </script>
 </head>

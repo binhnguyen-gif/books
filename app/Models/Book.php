@@ -16,16 +16,20 @@ class Book extends Model
         0 => 'Ngừng đăng'
     ];
 
-    public function getBooksByKey($search): ?array
+    public function getBooksByKey($search, $sort = null): ?array
     {
+        $data = [];
         $query = "SELECT * FROM {$this->table} WHERE status <> 0";
-
-        if (!empty($search)) {
-            $data = ['key' => "%{$search}%"];
-            $query = "SELECT * FROM {$this->table} WHERE name LIKE :key AND status <> 0";
+        if (in_array($sort, ['DESC', 'ASC'])) {
+            $query .= " ORDER BY price $sort";
         }
 
-        return $this->getDataByQuery($query, $data ?? []);
+        if (!empty($search)) {
+            $data = ['key' => "%{$search}%", 'author' => "%{$search}%"];
+            $query .= " AND (name LIKE :key OR author LIKE :author)";
+        }
+
+        return $this->getDataByQuery($query, $data);
     }
 
     public function getAllProductByCategory($id): ?array

@@ -62,8 +62,10 @@ require_once 'Sliderbar.php'; ?>
                                                    class="btn btn-default add-to-cart"/>
                                         </fieldset>
                                     </form>
-                                    <p><b>Tình trạng:</b> Mới 100 %</p>
-                                    <p><b>Nhà xuất bản :</b>
+                                    <p><b>Tác giả: </b><?php
+                                        echo $book['author']; ?></p>
+                                    <p><b>Tình trạng: </b> Mới 100 %</p>
+                                    <p><b>Nhà xuất bản: </b>
                                         <?php foreach (listCategories() as $category) {
                                             if($book['category_id'] == $category['id']) {?>
                                                 <?php echo $category['name']; ?>

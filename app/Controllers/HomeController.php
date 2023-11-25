@@ -14,11 +14,12 @@ class HomeController
     public function index(): View
     {
         $search = $_GET['search'] ?? '';
+        $sort = $_GET['sort_by_price'] ?? '';
         if(empty($search) && isset($_GET['search'])) {
             redirect(route());
         }
 
-        $books = (new Book())->getBooksByKey($search);
+        $books = (new Book())->getBooksByKey($search, $sort);
         $sellingBooks = (new Book())->getBooksByCondition('qty_buy', 'DESC');
         $categories = (new Category())->getAll();
         $publish = (new Publish())->getAll();
