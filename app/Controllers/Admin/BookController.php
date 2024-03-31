@@ -7,7 +7,6 @@ use App\Helpers\CustomSession;
 use App\Models\Book;
 use App\View;
 
-
 class BookController extends Controller
 {
     public function __construct()
@@ -42,7 +41,7 @@ class BookController extends Controller
                 }
             }
         } catch (\Exception $e) {
-            CustomSession::put('error', 'Lỗi: '.$e->getMessage().'line-> '.$e->getLine());
+            CustomSession::put('error', 'Lỗi: ' . $e->getMessage() . 'line-> ' . $e->getLine());
             back();
         }
 
@@ -67,7 +66,7 @@ class BookController extends Controller
                 $id = $_POST['book_id'];
                 $book = (new Book())->getById($id);
 
-                if (!check_upload('image') && !empty($_FILES["image"]["name"])) {
+                if (!check_upload('image') && !empty($_FILES['image']['name'])) {
                     delete_file($book['image']);
                     $this->updateFile('image');
                 }
@@ -101,19 +100,17 @@ class BookController extends Controller
         back();
     }
 
-
     protected function updateFile($image): bool
     {
-        if ($_FILES["{$image}"]["error"] > 0) {
-            echo "Return Code: ".$_FILES["{$image}"]["error"]."<br>";die();
+        if ($_FILES["{$image}"]['error'] > 0) {
+            echo 'Return Code: ' . $_FILES["{$image}"]['error'] . '<br>';
+            die();
         } else {
-            if (file_exists("assets/images/product/".file_name('image'))) {
-                echo $_FILES["{$image}"]["name"]." already exists. ";die();
+            if (file_exists('assets/images/product/' . file_name('image'))) {
+                echo $_FILES["{$image}"]['name'] . ' already exists. ';
+                die();
             } else {
-                move_uploaded_file(
-                    $_FILES["{$image}"]["tmp_name"],
-                    "assets/images/product/".file_name('image')
-                );
+                move_uploaded_file($_FILES["{$image}"]['tmp_name'], 'assets/images/product/' . file_name('image'));
                 return true;
             }
         }
@@ -121,7 +118,6 @@ class BookController extends Controller
         return false;
     }
 
-    
     protected function extracted(): array
     {
         return [
@@ -140,7 +136,4 @@ class BookController extends Controller
             'status' => $_POST['status'],
         ];
     }
-
-
 }
-
